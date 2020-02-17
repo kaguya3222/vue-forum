@@ -14,6 +14,11 @@ const routes = [
     name: "ThreadShow",
     component: () => import("@/pages/PageThreadShow"),
     props: true
+  },
+  {
+    path: "*",
+    name: "NotFound",
+    component: () => import("@/pages/PageNotFound")
   }
 ];
 
