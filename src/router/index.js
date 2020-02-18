@@ -10,7 +10,7 @@ const routes = [
     component: () => import("@/pages/PageHome")
   },
   {
-    path: "/threads/:id",
+    path: "/threads/:threadId",
     name: "ThreadShow",
     component: () => import("@/pages/PageThreadShow"),
     props: true

@@ -4,21 +4,7 @@
 
     <post-list :posts="posts"></post-list>
 
-    <form @submit.prevent="addPost()">
-      <div class="form-group">
-        <textarea
-          name=""
-          id=""
-          cols="30"
-          rows="10"
-          class="form-input"
-          v-model="newPostText"
-        ></textarea>
-      </div>
-      <div class="form-actions">
-        <button class="btn-blue">Submit post</button>
-      </div>
-    </form>
+    <post-editor :threadId="threadId"></post-editor>
   </div>
 </template>
 
@@ -31,15 +17,14 @@ export default {
     "post-list": PostList
   },
   props: {
-    id: {
+    threadId: {
       required: true,
       type: String
     }
   },
   data() {
     return {
-      thread: sourceData.threads[this.id],
-      newPostText: ""
+      thread: sourceData.threads[this.threadId]
     };
   },
   computed: {
