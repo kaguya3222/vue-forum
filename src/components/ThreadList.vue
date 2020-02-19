@@ -5,7 +5,7 @@
       v-for="thread in threads"
       :key="thread['.key']"
       :thread="thread"
-    ></thread-list-item>
+    />
   </div>
 </template>
 

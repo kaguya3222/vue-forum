@@ -7,7 +7,9 @@
       <app-date :unixDate="thread.publishedAt" />.
     </p>
 
-    <post-editor :threadId="threadId"></post-editor>
+    <post-list :posts="posts" />
+
+    <post-editor :threadId="threadId" />
   </div>
 </template>
 
