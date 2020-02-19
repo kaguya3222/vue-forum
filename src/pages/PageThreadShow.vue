@@ -2,7 +2,10 @@
   <div class="col-large push-top">
     <h1>{{ thread.title }}</h1>
 
-    <post-list :posts="posts"></post-list>
+    <p>
+      By <a href="#" class="link-unstyled">Robin</a>,
+      <app-date :unixDate="thread.publishedAt" />.
+    </p>
 
     <post-editor :threadId="threadId"></post-editor>
   </div>
