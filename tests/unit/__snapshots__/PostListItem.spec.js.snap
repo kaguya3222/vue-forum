@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostListItem Shows post data 1`] = `
+<div class="post">
+  <div class="user-info"><a href="#" class="user-name">Rolf</a> <a href="#"><img src="https://firebasestorage.googleapis.com/v0/b/forum-2a982.appspot.com/o/images%2Favatars%2Frah?alt=media&amp;token=7ad21914-a4f4-4ad0-add6-17e6d3ae9679" alt="" class="avatar-large"></a>
+    <p class="desktop-only text-small">5 posts</p>
+  </div>
+  <div class="post-content">
+    <div>
+      I'm curious to know what kind of pets the forum users have. I thought this could be a nice way to get to know each other a little better, so I'll start!
+
+      My dog is a five month old Italian mastiff (Cane Corso). Since I got him from Barcelona I thought a Spanish name would be suitable, and I named him Don Jefe, or Jefe for short (which means "boss man").
+
+      Jefe is a cute, little beast who eats 1.5 kg raw meat every day. He love to fart, snore and play.
+
+      Here's Jefe with his Instagram hat and sqeaky ball 🎉🎉🎉
+      ![Don Jefe](http://i.imgur.com/XCWzR6l.jpg)
+
+    </div>
+  </div>
+  <app-date-stub unixdate="1504035908"></app-date-stub>
+</div>
+`;
