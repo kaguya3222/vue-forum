@@ -30,6 +30,7 @@ export default {
       type: Object
     }
   },
+  name: "PostListItem.vue",
   computed: {
     user() {
       return sourceData.users[this.post.userId];
