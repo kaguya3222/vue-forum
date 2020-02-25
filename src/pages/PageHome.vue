@@ -1,24 +1,25 @@
 <template>
   <div class="col-full">
     <h1>Welcome to the forum</h1>
-    <thread-list :threads="threads" />
+    <forum-list :forums="forums" />
   </div>
 </template>
 
 <script>
 import sourceData from "@/data";
-import ThreadList from "../components/ThreadList";
+import ForumList from "../components/ForumList";
 
 export default {
   data() {
     return {
       threads: Object.values(sourceData.threads),
       posts: sourceData.posts,
-      users: sourceData.users
+      users: sourceData.users,
+      forums: Object.values(sourceData.forums)
     };
   },
   components: {
-    "thread-list": ThreadList
+    "forum-list": ForumList
   }
 };
 </script>
