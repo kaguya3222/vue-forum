@@ -37,9 +37,6 @@ export default {
     },
     user() {
       return sourceData.users[this.thread.userId];
-    },
-    threadLink() {
-      return `/threads/${this.thread[".key"]}`;
     }
   }
 };
