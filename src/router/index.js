@@ -10,6 +10,12 @@ const routes = [
     component: () => import("@/pages/PageHome")
   },
   {
+    path: "/category/:id",
+    name: "Category",
+    component: () => import("@/pages/PageCategory"),
+    props: true
+  },
+  {
     path: "/forum/:id",
     name: "Forum",
     component: () => import("@/pages/PageForum"),
