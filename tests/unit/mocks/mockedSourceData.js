@@ -26,5 +26,29 @@ export default {
       userId: "FsCDAk9w8NeXEceLV87arpsXjnQ2",
       ".key": "-KsjefUiIuNkJieBc5Rq"
     }
-  }
+  },
+  threads: [
+    {
+      contributors: {
+        FsCDAk9w8NeXEceLV87arpsXjnQ2: "FsCDAk9w8NeXEceLV87arpsXjnQ2",
+        L664y3qZSubDbT1R6npC0EEybJ73: "L664y3qZSubDbT1R6npC0EEybJ73",
+        VXjpr2WHa8Ux4Bnggym8QFLdv5C3: "VXjpr2WHa8Ux4Bnggym8QFLdv5C3"
+      },
+      firstPostId: "-KsjWehQ--apjDBwSBCZ",
+      forumId: "-KsjPat5MWCx-dkjNVg8",
+      lastPostAt: 1504040497,
+      lastPostId: "-KsjnAAjzfpznUVh4DSa",
+      posts: {
+        "-KsjWehQ--apjDBwSBCZ": "-KsjWehQ--apjDBwSBCZ",
+        "-KsjefUiIuNkJieBc5Rq": "-KsjefUiIuNkJieBc5Rq",
+        "-KsjfvciJhJnebrL4Iw7": "-KsjfvciJhJnebrL4Iw7",
+        "-KsjnAAjzfpznUVh4DSa": "-KsjnAAjzfpznUVh4DSa"
+      },
+      publishedAt: 1504035908,
+      slug: "what-kind-of-pet-do-you-have",
+      title: "What kind of pet do you have?",
+      userId: "ALXhxjwgY9PinwNGHpfai6OWyDu2",
+      ".key": "-KsjWehQ--apjDBwSBCY"
+    }
+  ]
 };
