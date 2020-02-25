@@ -8,8 +8,9 @@
         >
       </p>
       <p class="text-faded text-xsmall">
-        By <a href="#">{{ user.name }}</a>,
-        <app-date :unixDate="thread.publishedAt"/>
+        By <a href="#">{{ user.name }}</a
+        >,
+        <app-date :unixDate="thread.publishedAt" />
       </p>
     </div>
 
@@ -20,7 +21,7 @@
 </template>
 
 <script>
-import sourceData from "@/data";
+import sourceData from "@/data.json";
 
 export default {
   props: {
@@ -29,6 +30,7 @@ export default {
       type: Object
     }
   },
+  name: "ThreadListItem.vue",
   computed: {
     repliesCount() {
       return Object.keys(this.thread.posts).length - 1;
