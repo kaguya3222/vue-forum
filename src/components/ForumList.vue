@@ -1,8 +1,5 @@
 <template>
-  <div class="forum-list">
-    <h2 class="list-title">
-      <a href="category.html">Forums</a>
-    </h2>
+  <div>
     <forum-list-item
       v-for="forum in forums"
       :key="forum['.key']"
