@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ThreadListItem Shows thread data 1`] = `
+<div class="thread">
+  <div>
+    <p>
+      <router-link-stub to="[object Object]">What kind of pet do you have?</router-link-stub>
+    </p>
+    <p class="text-faded text-xsmall">
+      By <a href="#">Rolf</a>,
+      <app-date-stub unixdate="1504035908"></app-date-stub>
+    </p>
+  </div>
+  <div class="activity">
+    <p class="replies-count">3 replies</p>
+  </div>
+</div>
+`;
