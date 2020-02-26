@@ -10,7 +10,6 @@ describe("CategoryList", () => {
         categories: mockedSourceData.categories
       }
     });
-    const categoryListItem = wrapper.find(CategoryListItem);
-    expect(categoryListItem.name()).toBe("CategoryListItem.vue");
+    expect(wrapper.contains(CategoryListItem)).toBe(true);
   });
 });
