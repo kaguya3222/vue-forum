@@ -1,6 +1,6 @@
 import { shallowMount } from "@vue/test-utils";
-import PostListItem from "../../src/components/PostListItem";
-import mockedSourceData from "./mocks/mockedSourceData";
+import PostListItem from "../../../src/components/PostListItem";
+import mockedSourceData from "../mocks/mockedSourceData";
 
 describe("PostListItem", () => {
   test("Shows post data", () => {

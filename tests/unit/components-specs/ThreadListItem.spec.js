@@ -1,6 +1,6 @@
 import { shallowMount } from "@vue/test-utils";
-import ThreadListItem from "../../src/components/ThreadListItem";
-import mockedSourceData from "./mocks/mockedSourceData";
+import ThreadListItem from "../../../src/components/ThreadListItem";
+import mockedSourceData from "../mocks/mockedSourceData";
 
 describe("ThreadListItem", () => {
   test("Shows thread data", () => {

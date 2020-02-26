@@ -1,7 +1,7 @@
 import { shallowMount } from "@vue/test-utils";
-import PostList from "../../src/components/PostList";
-import PostListItem from "../../src/components/PostListItem";
-import mockedSourceData from "./mocks/mockedSourceData";
+import PostList from "../../../src/components/PostList";
+import PostListItem from "../../../src/components/PostListItem";
+import mockedSourceData from "../mocks/mockedSourceData";
 
 describe("PostList", () => {
   test("Accepts PostListItem as a component", () => {
@@ -10,7 +10,7 @@ describe("PostList", () => {
         posts: Object.values(mockedSourceData.posts)
       },
       stubs: {
-        "post-list-item": true
+        "app-date": true
       }
     });
     const postListItem = wrapper.find(PostListItem);
