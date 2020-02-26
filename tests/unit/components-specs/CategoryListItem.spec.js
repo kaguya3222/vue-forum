@@ -17,8 +17,7 @@ describe("CategoryListItem", () => {
     expect(routerLinkStub).toMatchSnapshot();
   });
   test("Accepts ForumList as a child component", () => {
-    const forumList = wrapper.find(ForumList);
-    expect(forumList.name()).toBe("ForumList.vue");
+    expect(wrapper.contains(ForumList)).toBe(true);
   });
   test("Creates forums array of certain category", () => {
     const forum = mockedSourceData.forums[0];
