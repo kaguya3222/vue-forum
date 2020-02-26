@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ForumListItem Shows forum data 1`] = `
+<div class="forum-listing">
+  <div class="forum-details">
+    <router-link-stub to="[object Object]" class="text-xlarge">
+      Announcements
+    </router-link-stub>
+    <p>Important announcements about the forum.</p>
+  </div>
+  <div class="threads-count">
+    <p class="count">1</p>
+    thread
+  </div>
+  <div class="last-thread"></div>
+</div>
+`;
