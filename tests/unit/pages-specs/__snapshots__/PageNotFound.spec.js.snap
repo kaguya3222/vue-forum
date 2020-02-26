@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageNotFound Shows not found error and instructions 1`] = `
+<div class="col-full col-full_centered">
+  <h1 class="col-full__header col-full__header_size_l">
+    Not found
+  </h1>
+  <p class="col-full__text col-full__text_size_l">
+    Ooops! We couldn't find what you are looking for.
+  </p>
+  <p class="col-full__text col-full__text_size_l">
+    <router-link-stub to="[object Object]">Back to Home Page</router-link-stub>
+  </p>
+</div>
+`;
