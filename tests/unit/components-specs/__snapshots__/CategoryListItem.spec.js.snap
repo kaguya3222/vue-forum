@@ -5,9 +5,3 @@ exports[`CategoryListItem Renders category name as a link 1`] = `
   Feedback &amp; Information
 </router-link-stub>
 `;
-
-exports[`CategoryListItem Renders category name properly 1`] = `
-<router-link-stub to="[object Object]">
-  Feedback &amp; Information
-</router-link-stub>
-`;
