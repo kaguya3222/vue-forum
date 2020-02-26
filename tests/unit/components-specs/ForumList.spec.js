@@ -10,7 +10,6 @@ describe("ForumList", () => {
         forums: mockedSourceData.forums
       }
     });
-    const forumListItem = wrapper.find(ForumListItem);
-    expect(forumListItem.name()).toBe("ForumListItem");
+    expect(wrapper.contains(ForumListItem)).toBe(true);
   });
 });
