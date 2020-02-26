@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageForum Shows forum data on forum page 1`] = `
+<div class="forum-wrapper">
+  <div class="col-full push-top">
+    <div class="forum-header">
+      <div class="forum-details">
+        <h1>Questions &amp; Feedback</h1>
+        <p class="text-lead">Ask your questions and drop your feedback here</p>
+      </div> <a href="new-thread.html" class="btn-green btn-small">Start a thread</a>
+    </div>
+  </div>
+  <div class="col-full push-top">
+    <thread-list-stub threads="[object Object]"></thread-list-stub>
+  </div>
+</div>
+`;
