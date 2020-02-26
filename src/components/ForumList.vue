@@ -20,7 +20,7 @@ export default {
       type: Array
     }
   },
-  name: "ForumList"
+  name: "ForumList.vue"
 };
 </script>
 
