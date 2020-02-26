@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import sourceData from "@/data";
+import sourceData from "@/data.json";
 import CategoryList from "../components/CategoryList";
 
 export default {
