@@ -11,7 +11,7 @@ describe("ForumListItem", () => {
       "router-link": true
     }
   });
-  test("Shows forum data", () => {
+  test("Shows forum data in forums list", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
