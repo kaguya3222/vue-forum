@@ -13,7 +13,6 @@ describe("PostList", () => {
         "app-date": true
       }
     });
-    const postListItem = wrapper.find(PostListItem);
-    expect(postListItem.name()).toBe("PostListItem.vue");
+    expect(wrapper.contains(PostListItem)).toBe(true);
   });
 });
