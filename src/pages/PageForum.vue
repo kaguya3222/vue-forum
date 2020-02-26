@@ -11,7 +11,7 @@
     </div>
 
     <div class="col-full push-top">
-      <thread-list :threads="threads" />
+      <thread-list :threads="forumThreads" />
     </div>
   </div>
 </template>
@@ -35,7 +35,7 @@ export default {
     forum() {
       return sourceData.forums[this.id];
     },
-    threads() {
+    forumThreads() {
       return Object.values(sourceData.threads).filter(
         thread => thread.forumId === this.id
       );

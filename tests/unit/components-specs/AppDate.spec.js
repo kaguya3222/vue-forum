@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import AppDate from "../../src/components/AppDate";
+import AppDate from "../../../src/components/AppDate";
 
 describe("AppDate", () => {
   test("Shows date in right format", () => {

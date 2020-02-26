@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageThreadShow Shows thread data on thread page 1`] = `
+<div class="col-large push-top">
+  <h1>What kind of pet do you have?</h1>
+  <p>
+    By <a href="#" class="link-unstyled">Robin</a>,
+    <app-date-stub unixdate="1504035908"></app-date-stub>.
+  </p>
+  <post-list-stub posts="[object Object],[object Object],[object Object],[object Object]"></post-list-stub>
+  <post-editor-stub threadid="-KsjWehQ--apjDBwSBCY"></post-editor-stub>
+</div>
+`;

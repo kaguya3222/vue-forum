@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PostListItem Shows post data 1`] = `
+exports[`PostListItem Shows post data in posts list 1`] = `
 <div class="post">
   <div class="user-info"><a href="#" class="user-name">Rolf</a> <a href="#"><img src="https://firebasestorage.googleapis.com/v0/b/forum-2a982.appspot.com/o/images%2Favatars%2Frah?alt=media&amp;token=7ad21914-a4f4-4ad0-add6-17e6d3ae9679" alt="" class="avatar-large"></a>
     <p class="desktop-only text-small">5 posts</p>

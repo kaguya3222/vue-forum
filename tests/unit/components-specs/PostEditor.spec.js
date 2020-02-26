@@ -1,6 +1,6 @@
 import { mount } from "@vue/test-utils";
-import PostEditor from "../../src/components/PostEditor";
-import mockedSourceData from "./mocks/mockedSourceData";
+import PostEditor from "../../../src/components/PostEditor";
+import mockedSourceData from "../mocks/mockedSourceData";
 
 describe("PostEditor", () => {
   test("Adds post to thread", () => {

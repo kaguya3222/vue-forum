@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageCategory Shows category data on category page 1`] = `
+<div class="col-full col-full_centered">
+  <div class="col-full push-top">
+    <h1>Feedback &amp; Information</h1>
+  </div>
+  <category-list-item-stub category="[object Object]"></category-list-item-stub>
+</div>
+`;

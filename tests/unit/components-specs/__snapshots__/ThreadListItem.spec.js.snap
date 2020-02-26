@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ThreadListItem Shows thread data 1`] = `
+exports[`ThreadListItem Shows thread data in threads list 1`] = `
 <div class="thread">
   <div>
     <p>

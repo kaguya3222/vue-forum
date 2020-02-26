@@ -76,5 +76,48 @@ export default {
       userId: "u4r8XCziZEWEXsj2UIKNHBoDh0n2",
       ".key": "-KsjpzIeFTdcsBIPvUfP"
     }
+  ],
+  forums: [
+    {
+      categoryId: "-KpR7vRkiRPpbUd_TVAR",
+      description: "Important announcements about the forum.",
+      lastPostId: "-KxxU6bYWl-6Xnu9g-56",
+      name: "Announcements",
+      slug: "announcements",
+      threads: { "-KvgjI6bfbWYlbYV5ndr": "-KvgjI6bfbWYlbYV5ndr" },
+      ".key": "-KpOx5Y4AqRr3sB4Ybwj"
+    },
+    {
+      categoryId: "-KpR7vRkiRPpbUd_TVAR",
+      description: "Ask your questions and drop your feedback here",
+      lastPostId: "-Kt2tjFsLkYONW35Or8c",
+      name: "Questions & Feedback",
+      slug: "questions-and-feedback",
+      threads: { "-KsjpzIeFTdcsBIPvUfP": "-KsjpzIeFTdcsBIPvUfP" },
+      ".key": "-KsjO4_W3W9Q2Z2UmuPr"
+    }
+  ],
+  categories: [
+    {
+      forums: {
+        "-KpOx5Y4AqRr3sB4Ybwj": "-KpOx5Y4AqRr3sB4Ybwj",
+        "-KsjO4_W3W9Q2Z2UmuPr": "-KsjO4_W3W9Q2Z2UmuPr"
+      },
+      name: "Feedback & Information",
+      slug: "feedback-and-information",
+      ".key": "-KpR7vRkiRPpbUd_TVAR"
+    },
+    {
+      forums: {
+        "-KsjPat5MWCx-dkjNVg8": "-KsjPat5MWCx-dkjNVg8",
+        "-KsjPjasLh0TFtZmffEo": "-KsjPjasLh0TFtZmffEo",
+        "-Kvd1Vg_ankLYgrxC50F": "-Kvd1Vg_ankLYgrxC50F",
+        "-KvdCowY9mDvM0EH8Pvs": "-KvdCowY9mDvM0EH8Pvs",
+        "-KvhkEl6F673igPtnbso": "-KvhkEl6F673igPtnbso"
+      },
+      name: "Discussions",
+      slug: "discussions",
+      ".key": "-KsjPKA6hDuHlQK_lJWO"
+    }
   ]
 };

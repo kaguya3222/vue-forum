@@ -8,6 +8,7 @@
 import PostListItem from "./PostListItem";
 
 export default {
+  name: "PostList.vue",
   components: {
     "post-list-item": PostListItem
   },

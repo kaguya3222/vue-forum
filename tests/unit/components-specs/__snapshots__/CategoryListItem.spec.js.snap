@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CategoryListItem Renders category name as a link 1`] = `
+<router-link-stub to="[object Object]">
+  Feedback &amp; Information
+</router-link-stub>
+`;
