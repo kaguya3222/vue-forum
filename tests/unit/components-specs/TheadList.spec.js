@@ -10,7 +10,6 @@ describe("ThreadList", () => {
         threads: Object.values(mockedSourceData.threads)
       }
     });
-    const threadListItem = wrapper.find(ThreadListItem);
-    expect(threadListItem.name()).toBe("ThreadListItem.vue");
+    expect(wrapper.contains(ThreadListItem)).toBe(true);
   });
 });
