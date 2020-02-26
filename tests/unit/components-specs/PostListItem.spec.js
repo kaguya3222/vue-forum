@@ -3,7 +3,7 @@ import PostListItem from "../../../src/components/PostListItem";
 import mockedSourceData from "../mocks/mockedSourceData";
 
 describe("PostListItem", () => {
-  test("Shows post data", () => {
+  test("Shows post data in posts list", () => {
     const wrapper = shallowMount(PostListItem, {
       propsData: {
         post: mockedSourceData.posts["-KsjWehQ--apjDBwSBCZ"]
