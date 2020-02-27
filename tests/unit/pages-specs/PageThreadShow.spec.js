@@ -1,17 +1,25 @@
-import { shallowMount } from "@vue/test-utils";
+import { createLocalVue, shallowMount } from "@vue/test-utils";
 import PageThreadShow from "../../../src/pages/PageThreadShow";
 import PostList from "../../../src/components/PostList";
 import PostEditor from "../../../src/components/PostEditor";
 import mockedSourceData from "../mocks/mockedSourceData";
+import Vuex from "vuex";
+import sourceStore from "../../../src/store";
+
+const localVue = createLocalVue();
+localVue.use(Vuex);
 
 describe("PageThreadShow", () => {
+  const store = new Vuex.Store(sourceStore);
   const wrapper = shallowMount(PageThreadShow, {
     propsData: {
       threadId: mockedSourceData.threads[0][".key"]
     },
     stubs: {
       "app-date": true
-    }
+    },
+    localVue,
+    store
   });
   test("Shows thread data on thread page", () => {
     expect(wrapper).toMatchSnapshot();

@@ -1,16 +1,24 @@
-import { shallowMount } from "@vue/test-utils";
+import Vuex from "vuex";
+import { createLocalVue, shallowMount } from "@vue/test-utils";
 import CategoryListItem from "../../../src/components/CategoryListItem";
 import ForumList from "../../../src/components/ForumList";
 import mockedSourceData from "../mocks/mockedSourceData";
+import sourceStore from "../../../src/store/index";
+
+const localVue = createLocalVue();
+localVue.use(Vuex);
 
 describe("CategoryListItem", () => {
+  const store = new Vuex.Store(sourceStore);
   const wrapper = shallowMount(CategoryListItem, {
     propsData: {
       category: mockedSourceData.categories[0]
     },
     stubs: {
       "router-link": true
-    }
+    },
+    localVue,
+    store
   });
   test("Renders category name as a link", () => {
     const routerLinkStub = wrapper.find("router-link-stub");
