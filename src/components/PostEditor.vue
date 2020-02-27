@@ -33,17 +33,13 @@ export default {
   },
   methods: {
     addPost() {
-      const postId = "greatPost" + Math.random();
-      const userId = "jUjmgCurRRdzayqbRMO7aTG9X1G2";
-      sourceData.posts[postId] = {
+      const post = {
         text: this.newPostText,
         publishedAt: Math.floor(Date.now() / 1000),
         threadId: this.threadId,
-        userId,
-        ".key": postId
+        userId: "jUjmgCurRRdzayqbRMO7aTG9X1G2"
       };
-      sourceData.users[userId].posts[postId] = postId;
-      this.$set(this.thread.posts, postId, postId);
+      this.$store.dispatch("createPost", post);
       this.newPostText = "";
     }
   }
