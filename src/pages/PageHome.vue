@@ -6,17 +6,16 @@
 </template>
 
 <script>
-import sourceData from "@/data.json";
 import CategoryList from "../components/CategoryList";
 
 export default {
   data() {
     return {
-      threads: sourceData.threads,
-      posts: sourceData.posts,
-      users: sourceData.users,
-      forums: sourceData.forums,
-      categories: Object.values(sourceData.categories)
+      threads: this.$store.state.threads,
+      posts: this.$store.state.posts,
+      users: this.$store.state.users,
+      forums: this.$store.state.forums,
+      categories: Object.values(this.$store.state.categories)
     };
   },
   components: {

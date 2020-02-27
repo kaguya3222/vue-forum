@@ -17,8 +17,6 @@
 </template>
 
 <script>
-import sourceData from "@/data.json";
-
 export default {
   name: "PostEditor.vue",
   props: {
@@ -29,7 +27,7 @@ export default {
   },
   data() {
     return {
-      thread: sourceData.threads[this.threadId],
+      thread: this.$store.state.threads[this.threadId],
       newPostText: ""
     };
   },
