@@ -8,7 +8,10 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("ThreadListItem", () => {
-  const store = new Vuex.Store(sourceStore);
+  const store = new Vuex.Store({
+    state: sourceStore.state,
+    getters: {}
+  });
   const wrapper = shallowMount(ThreadListItem, {
     propsData: {
       thread: mockedSourceData.threads[0]

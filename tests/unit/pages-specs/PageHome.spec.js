@@ -8,7 +8,10 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("PageHome", () => {
-  const store = new Vuex.Store(sourceStore);
+  const store = new Vuex.Store({
+    state: sourceStore.state,
+    getters: {}
+  });
   const wrapper = shallowMount(PageHome, {
     localVue,
     store

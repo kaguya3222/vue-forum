@@ -9,7 +9,8 @@ localVue.use(Vuex);
 
 describe("PostEditor", () => {
   const store = new Vuex.Store({
-    state: sourceStore.state
+    state: sourceStore.state,
+    getters: {}
   });
   const wrapper = mount(PostEditor, {
     propsData: {

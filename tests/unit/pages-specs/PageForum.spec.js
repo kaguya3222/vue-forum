@@ -9,7 +9,10 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("PageForum", () => {
-  const store = new Vuex.Store(sourceStore);
+  const store = new Vuex.Store({
+    state: sourceStore.state,
+    getters: {}
+  });
   const wrapper = shallowMount(PageForum, {
     propsData: {
       id: mockedSourceData.forums[1][".key"]

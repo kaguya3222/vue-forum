@@ -10,7 +10,10 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("PageThreadShow", () => {
-  const store = new Vuex.Store(sourceStore);
+  const store = new Vuex.Store({
+    state: sourceStore.state,
+    getters: {}
+  });
   const wrapper = shallowMount(PageThreadShow, {
     propsData: {
       threadId: mockedSourceData.threads[0][".key"]

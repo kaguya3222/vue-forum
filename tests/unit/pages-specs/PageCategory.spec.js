@@ -9,7 +9,10 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("PageCategory", () => {
-  const store = new Vuex.Store(sourceStore);
+  const store = new Vuex.Store({
+    state: sourceStore.state,
+    getters: {}
+  });
   const wrapper = shallowMount(PageCategory, {
     propsData: {
       id: mockedSourceData.categories[0][".key"]

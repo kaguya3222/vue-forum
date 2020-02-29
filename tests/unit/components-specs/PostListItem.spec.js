@@ -8,7 +8,10 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("PostListItem", () => {
-  const store = new Vuex.Store(sourceStore);
+  const store = new Vuex.Store({
+    state: sourceStore.state,
+    getters: {}
+  });
   test("Shows post data in posts list", () => {
     const wrapper = shallowMount(PostListItem, {
       propsData: {
