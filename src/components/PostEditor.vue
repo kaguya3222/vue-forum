@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "PostEditor.vue",
   props: {
@@ -31,14 +32,20 @@ export default {
       newPostText: ""
     };
   },
+  computed: {
+    ...mapGetters({
+      user: "authUser"
+    })
+  },
   methods: {
     addPost() {
       const postId = "greatPost" + Math.random();
+      const userId = this.user[".key"];
       const post = {
         text: this.newPostText,
         publishedAt: Math.floor(Date.now() / 1000),
         threadId: this.threadId,
-        userId: "jUjmgCurRRdzayqbRMO7aTG9X1G2",
+        userId,
         ".key": postId
       };
       this.$store.dispatch("createPost", { post });
