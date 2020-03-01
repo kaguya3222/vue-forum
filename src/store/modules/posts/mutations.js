@@ -9,7 +9,7 @@ export default {
     Vue.set(thread.posts, postId, postId);
   },
   appendPostToUser(state, { postId, userId, rootState }) {
-    const user = rootState.users[userId];
+    const user = rootState.forumUsers.users[userId];
     Vue.set(user.posts, postId, postId);
   }
 };
