@@ -15,6 +15,12 @@ const routes = [
     component: () => import("@/pages/PageProfile")
   },
   {
+    path: "/me/edit",
+    name: "ProfileEditor",
+    component: () => import("@/pages/PageProfile"),
+    props: { edit: true }
+  },
+  {
     path: "/category/:id",
     name: "Category",
     component: () => import("@/pages/PageCategory"),
