@@ -29,10 +29,12 @@ describe("createPost", () => {
     });
   });
   test("Commits appendPostToUser", () => {
-    const userId = "jUjmgCurRRdzayqbRMO7aTG9X1G2";
-    expect(sourceStore.commit).toHaveBeenCalledWith("appendPostToUser", {
-      postId,
-      userId
-    });
+    expect(sourceStore.commit).toHaveBeenCalledWith(
+      "appendPostToUser",
+      expect.objectContaining({
+        postId,
+        userId: expect.any(String)
+      })
+    );
   });
 });
