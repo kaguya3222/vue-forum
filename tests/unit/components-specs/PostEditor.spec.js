@@ -44,10 +44,13 @@ describe("PostEditor", () => {
     const postForm = wrapper.find("form");
     postForm.trigger("submit");
     expect(wrapper.vm.$store.dispatch).toHaveBeenCalledWith("createPost", {
-      text: "Hello guys!",
-      publishedAt: Math.floor(Date.now() / 1000),
-      threadId: wrapper.vm.threadId,
-      userId: "jUjmgCurRRdzayqbRMO7aTG9X1G2"
+      post: expect.objectContaining({
+        text: "Hello guys!",
+        publishedAt: Math.floor(Date.now() / 1000),
+        threadId: wrapper.vm.threadId,
+        userId: "jUjmgCurRRdzayqbRMO7aTG9X1G2",
+        ".key": expect.any(String)
+      })
     });
   });
 });
