@@ -4,7 +4,7 @@ import actions from "./actions";
 
 export default {
   state: {
-    ...sourceData
+    posts: sourceData.posts
   },
   mutations: {
     ...mutations
