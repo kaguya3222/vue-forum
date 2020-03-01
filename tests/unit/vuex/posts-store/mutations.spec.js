@@ -1,11 +1,13 @@
 import mutations from "../../../../src/store/modules/posts/mutations";
-import sourceStore from "@/store/";
+import rootStore from "@/store/";
+import postsStore from "@/store/modules/posts/store";
+import usersStore from "@/store/modules/users/store";
 
 describe("setPost", () => {
   test("adds post to posts object", () => {
-    const posts = sourceStore.state.posts;
+    const posts = postsStore.state.posts;
     const postsLengthBeforeSet = Object.values(posts).length;
-    mutations.setPost(sourceStore.state, {
+    mutations.setPost(postsStore.state, {
       post: {
         text: "Hello guys",
         publishedAt: Math.floor(Date.now() / 1000),
@@ -22,11 +24,12 @@ describe("setPost", () => {
 describe("appendPostToThread", () => {
   test("adds post to thread object", () => {
     const threadId = "-KsjWehQ--apjDBwSBCY";
-    const threadPosts = sourceStore.state.threads[threadId].posts;
+    const threadPosts = rootStore.state.threads[threadId].posts;
     const threadPostsBeforeSet = Object.values(threadPosts).length;
-    mutations.appendPostToThread(sourceStore.state, {
+    mutations.appendPostToThread(postsStore.state, {
       postId: "greatPost" + Math.random(),
-      threadId
+      threadId,
+      rootState: rootStore.state
     });
     const threadPostsAfterSet = Object.values(threadPosts).length;
     expect(threadPostsBeforeSet < threadPostsAfterSet).toBe(true);
@@ -34,13 +37,14 @@ describe("appendPostToThread", () => {
 });
 
 describe("appendPostToUser", () => {
-  test("adds post to user object", () => {
+  test("adds post to users object", () => {
     const userId = "jUjmgCurRRdzayqbRMO7aTG9X1G2";
-    const userPosts = sourceStore.state.users[userId].posts;
+    const userPosts = usersStore.state.users[userId].posts;
     const userPostsBeforeSet = Object.values(userPosts).length;
-    mutations.appendPostToUser(sourceStore.state, {
+    mutations.appendPostToUser(postsStore.state, {
       postId: "greatPost" + Math.random(),
-      userId
+      userId,
+      rootState: rootStore.state
     });
     const userPostsAfterSet = Object.values(userPosts).length;
     expect(userPostsBeforeSet < userPostsAfterSet).toBe(true);
