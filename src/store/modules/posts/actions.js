@@ -1,8 +1,12 @@
 export default {
-  createPost(store, { post }) {
+  createPost({ commit, rootState }, { post }) {
     const postId = post[".key"];
-    store.commit("setPost", { post, postId });
-    store.commit("appendPostToThread", { postId, threadId: post.threadId });
-    store.commit("appendPostToUser", { postId, userId: post.userId });
+    commit("setPost", { post, postId });
+    commit("appendPostToThread", {
+      postId,
+      threadId: post.threadId,
+      rootState
+    });
+    commit("appendPostToUser", { postId, userId: post.userId, rootState });
   }
 };
