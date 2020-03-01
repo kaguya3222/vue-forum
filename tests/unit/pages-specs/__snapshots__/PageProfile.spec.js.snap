@@ -2,26 +2,20 @@
 
 exports[`PageProfile Shows user information 1`] = `
 <div class="flex-grid">
-  <div class="col-3 push-top">
-    <div class="profile-card">
-      <p class="text-center"><img src="http://i0.kym-cdn.com/photos/images/facebook/000/010/934/46623-batman_pikachu_super.png" alt="" class="avatar-xlarge"></p>
-      <h1 class="title">batman</h1>
-      <p class="text-lead">Bruce Wayne</p>
-      <p class="text-justify"><span>I'm Batman!</span></p> <span class="online">batman is online</span>
-      <div class="stats"><span>9 posts</span> <span>0 threads</span></div>
-      <hr>
-      <!---->
-    </div>
-    <p class="text-xsmall text-faded text-center">
-      Member since june 2003, last visited 4 hours ago
-    </p>
-    <div class="text-center">
-      <hr> <a href="edit-profile.html" class="btn-green btn-small">Edit Profile</a></div>
-  </div>
+  <user-profile-card-stub user="[object Object]" userpostscount="9" userthreadscount="0"></user-profile-card-stub>
   <div class="col-7 push-top">
-    <div class="profile-header"><span class="text-lead">
-        Joker's recent activity
-      </span> <a href="#">See only started threads?</a></div>
+    <div class="profile-header"><span class="text-lead"> batman's recent activity </span> <a href="#">See only started threads?</a></div>
+    <hr>
+    <post-list-stub posts="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></post-list-stub>
+  </div>
+</div>
+`;
+
+exports[`PageProfile Shows users information 1`] = `
+<div class="flex-grid">
+  <user-profile-card-stub user="[object Object]" userpostscount="9" userthreadscount="0"></user-profile-card-stub>
+  <div class="col-7 push-top">
+    <div class="profile-header"><span class="text-lead"> batman's recent activity </span> <a href="#">See only started threads?</a></div>
     <hr>
     <post-list-stub posts="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></post-list-stub>
   </div>
