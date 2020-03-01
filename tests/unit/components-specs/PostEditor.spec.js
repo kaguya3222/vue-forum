@@ -2,15 +2,24 @@ import Vuex from "vuex";
 import { createLocalVue, mount } from "@vue/test-utils";
 import PostEditor from "../../../src/components/PostEditor";
 import mockedSourceData from "../mocks/mockedSourceData";
-import sourceStore from "../../../src/store";
+import postsStore from "../../../src/store/modules/posts/store";
+import userStore from "../../../src/store/modules/users/store";
+import rootStore from "@/store/";
+import getters from "../../../src/store/modules/users/getters";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("PostEditor", () => {
   const store = new Vuex.Store({
-    state: sourceStore.state,
-    getters: {}
+    state: {
+      ...userStore.state,
+      ...postsStore.state,
+      ...rootStore.state
+    },
+    getters: {
+      ...getters
+    }
   });
   const wrapper = mount(PostEditor, {
     propsData: {
@@ -30,7 +39,7 @@ describe("PostEditor", () => {
     postInput.trigger("input");
   });
 
-  test("'newPostText' data property matches with user input", () => {
+  test("'newPostText' data property matches with users input", () => {
     expect(wrapper.vm.newPostText).toBe("Hello guys!");
   });
 
@@ -48,7 +57,7 @@ describe("PostEditor", () => {
         text: "Hello guys!",
         publishedAt: Math.floor(Date.now() / 1000),
         threadId: wrapper.vm.threadId,
-        userId: "jUjmgCurRRdzayqbRMO7aTG9X1G2",
+        userId: expect.any(String),
         ".key": expect.any(String)
       })
     });
