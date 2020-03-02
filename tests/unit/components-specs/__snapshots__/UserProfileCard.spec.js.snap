@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserProfileCard Correctly shows user profile card data 1`] = `
+<div class="col-3 push-top">
+  <div class="profile-card">
+    <p class="text-center"><img src="https://avatars3.githubusercontent.com/u/2327556?v=4&amp;s=460" alt="" class="avatar-xlarge"></p>
+    <h1 class="title">chrisvfritz</h1>
+    <p class="text-lead">Chris Fritz</p>
+    <p class="text-justify"><span>No bio specified.</span></p> <span class="online">chrisvfritz is online</span>
+    <div class="stats"><span>0 posts</span> <span>0 threads</span></div>
+    <hr>
+    <!---->
+  </div>
+  <p class="text-xsmall text-faded text-center">
+    Member since june 2003, last visited 4 hours ago
+  </p>
+  <div class="text-center">
+    <hr>
+    <router-link-stub to="[object Object]" class="btn-green btn-small">Edit profile</router-link-stub>
+  </div>
+</div>
+`;
