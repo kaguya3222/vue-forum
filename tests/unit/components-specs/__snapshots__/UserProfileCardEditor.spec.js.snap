@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserProfileCardEditor Correctly shows form for editing user data 1`] = `
+<div class="col-3 push-top">
+  <div class="profile-card">
+    <p class="text-center"><img src="https://avatars3.githubusercontent.com/u/2327556?v=4&amp;s=460" alt="" class="avatar-xlarge img-update"></p>
+    <div class="form-group"><input type="text" placeholder="Username" class="form-input text-lead text-bold"></div>
+    <div class="form-group"><input type="text" placeholder="Full Name" class="form-input text-lead"></div>
+    <div class="form-group"><label for="user_bio">Bio</label> <textarea id="user_bio" placeholder="Write a few words about yourself." class="form-input"></textarea></div>
+    <div class="stats"><span>0 posts</span> <span>0 threads</span></div>
+    <hr>
+    <div class="form-group"><label for="user_website" class="form-label">Website</label> <input autocomplete="off" id="user_website" class="form-input"></div>
+    <div class="form-group"><label for="user_email" class="form-label">Email</label> <input autocomplete="off" id="user_email" class="form-input"></div>
+    <div class="form-group"><label for="user_location" class="form-label">Location</label> <input autocomplete="off" id="user_location" class="form-input"></div>
+    <div class="btn-group space-between"><button class="btn-ghost">Cancel</button> <button type="submit" class="btn-blue">
+        Save
+      </button></div>
+  </div>
+  <p class="text-xsmall text-faded text-center">
+    Member since june 2003, last visited 4 hours ago
+  </p>
+</div>
+`;
