@@ -42,14 +42,9 @@ export default {
   },
   methods: {
     addPost() {
-      const postId = "greatPost" + Math.random();
-      const userId = this.user[".key"];
       const post = {
         text: this.newPostText,
-        publishedAt: Math.floor(Date.now() / 1000),
-        threadId: this.threadId,
-        userId,
-        ".key": postId
+        threadId: this.threadId
       };
       this.$store.dispatch("createPost", { post });
       this.newPostText = "";

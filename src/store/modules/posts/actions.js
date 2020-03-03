@@ -1,6 +1,9 @@
 export default {
   createPost({ commit, rootState }, { post }) {
-    const postId = post[".key"];
+    const postId = "greatPost" + Math.random();
+    post[".key"] = postId;
+    post.userId = rootState.forumUsers.authId;
+    post.publishedAt = Math.floor(Date.now() / 1000);
     commit("setPost", { post, postId });
     commit("appendPostToThread", {
       postId,
