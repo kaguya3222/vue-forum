@@ -30,7 +30,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["posts"]),
+    ...mapGetters(["posts", "threads"]),
     threadPosts() {
       const postsIds = Object.values(this.thread.posts);
       return Object.values(this.posts).filter(post =>
@@ -38,7 +38,7 @@ export default {
       );
     },
     thread() {
-      return this.$store.state.threads[this.threadId];
+      return this.threads[this.threadId];
     }
   }
 };

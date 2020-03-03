@@ -18,6 +18,7 @@
 
 <script>
 import ThreadList from "../components/ThreadList";
+import { mapGetters } from "vuex";
 
 export default {
   name: "PageForum",
@@ -31,11 +32,12 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(["threads"]),
     forum() {
       return this.$store.state.forums[this.id];
     },
     forumThreads() {
-      return Object.values(this.$store.state.threads).filter(
+      return Object.values(this.threads).filter(
         thread => thread.forumId === this.id
       );
     }

@@ -28,14 +28,17 @@ export default {
   },
   data() {
     return {
-      thread: this.$store.state.threads[this.threadId],
       newPostText: ""
     };
   },
   computed: {
     ...mapGetters({
-      user: "authUser"
-    })
+      user: "authUser",
+      threads: "threads"
+    }),
+    thread() {
+      return this.threads[this.threadId];
+    }
   },
   methods: {
     addPost() {
