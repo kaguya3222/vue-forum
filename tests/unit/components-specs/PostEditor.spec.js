@@ -55,10 +55,7 @@ describe("PostEditor", () => {
     expect(wrapper.vm.$store.dispatch).toHaveBeenCalledWith("createPost", {
       post: expect.objectContaining({
         text: "Hello guys!",
-        publishedAt: Math.floor(Date.now() / 1000),
         threadId: wrapper.vm.threadId,
-        userId: expect.any(String),
-        ".key": expect.any(String)
       })
     });
   });
