@@ -22,6 +22,7 @@
 
 <script>
 import { countObjectProperties } from "../helpers";
+import { mapGetters } from "vuex";
 
 export default {
   props: {
@@ -32,11 +33,12 @@ export default {
   },
   name: "ThreadListItem.vue",
   computed: {
+    ...mapGetters(["users"]),
     repliesCount() {
       return countObjectProperties(this.thread.posts) - 1;
     },
     user() {
-      return this.$store.state.users[this.thread.userId];
+      return this.users[this.thread.userId];
     }
   }
 };

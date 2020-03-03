@@ -22,6 +22,7 @@
 
 <script>
 import { countObjectProperties } from "../helpers";
+import { mapGetters } from "vuex";
 
 export default {
   props: {
@@ -32,8 +33,9 @@ export default {
   },
   name: "PostListItem.vue",
   computed: {
+    ...mapGetters(["users"]),
     user() {
-      return this.$store.state.users[this.post.userId];
+      return this.users[this.post.userId];
     },
     userPostsCount() {
       return countObjectProperties(this.user.posts);
