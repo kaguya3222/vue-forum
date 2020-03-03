@@ -33,7 +33,13 @@ const routes = [
     props: true
   },
   {
-    path: "/threads/:threadId",
+    path: "/thread/create",
+    name: "ThreadCreate",
+    component: () => import("@/pages/PageThreadCreate"),
+    props: true
+  },
+  {
+    path: "/thread/:threadId",
     name: "ThreadShow",
     component: () => import("@/pages/PageThreadShow"),
     props: true
