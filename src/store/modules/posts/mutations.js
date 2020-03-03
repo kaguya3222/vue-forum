@@ -5,11 +5,17 @@ export default {
     Vue.set(state.posts, postId, post);
   },
   appendPostToThread(state, { postId, threadId, rootState }) {
-    const thread = rootState.threads[threadId];
+    const thread = rootState.forumThreads.threads[threadId];
+    if (!thread.posts) {
+      Vue.set(thread, "posts", {});
+    }
     Vue.set(thread.posts, postId, postId);
   },
   appendPostToUser(state, { postId, userId, rootState }) {
     const user = rootState.forumUsers.users[userId];
+    if (!user.posts) {
+      Vue.set(user, "posts", {});
+    }
     Vue.set(user.posts, postId, postId);
   }
 };
