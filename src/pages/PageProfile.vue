@@ -46,11 +46,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      user: "authUser"
+      user: "authUser",
+      posts: "posts"
     }),
     userPosts() {
       if (this.user.posts) {
-        return Object.values(this.$store.state.posts).filter(
+        return Object.values(this.posts).filter(
           post => post.userId === this.user[".key"]
         );
       } else {

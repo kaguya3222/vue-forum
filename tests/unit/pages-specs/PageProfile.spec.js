@@ -6,7 +6,8 @@ import UserProfileCard from "../../../src/components/UserProfileCard";
 import UserProfileCardEditor from "../../../src/components/UserProfileCardEditor";
 import postsStore from "@/store/modules/posts/store";
 import userStore from "../../../src/store/modules/users/store";
-import getters from "../../../src/store/modules/users/getters";
+import usersGetters from "../../../src/store/modules/users/getters";
+import postsGetters from "@/store/modules/posts/getters";
 import mockedSourceData from "../mocks/mockedSourceData";
 import { countObjectProperties } from "../../../src/helpers";
 
@@ -20,7 +21,8 @@ describe("PageProfile", () => {
       ...userStore.state
     },
     getters: {
-      ...getters
+      ...usersGetters,
+      ...postsGetters
     }
   });
   const wrapper = shallowMount(PageProfile, {
@@ -45,7 +47,7 @@ describe("PageProfile", () => {
     });
   });
   test("Accepts vuex authUser getter", () => {
-    expect(wrapper.vm.user).toEqual(getters.authUser(userStore.state));
+    expect(wrapper.vm.user).toEqual(usersGetters.authUser(userStore.state));
   });
   test("Creates userPosts array of certain users", () => {
     const post = mockedSourceData.posts["-KsjnAAjzfpznUVh4DSa"];

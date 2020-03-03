@@ -5,6 +5,7 @@ import PostEditor from "../../../src/components/PostEditor";
 import mockedSourceData from "../mocks/mockedSourceData";
 import Vuex from "vuex";
 import sourceStore from "../../../src/store";
+import postsGetters from "@/store/modules/posts/getters";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -12,7 +13,9 @@ localVue.use(Vuex);
 describe("PageThreadShow", () => {
   const store = new Vuex.Store({
     state: sourceStore.state,
-    getters: {}
+    getters: {
+      ...postsGetters
+    }
   });
   const wrapper = shallowMount(PageThreadShow, {
     propsData: {

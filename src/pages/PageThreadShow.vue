@@ -16,6 +16,7 @@
 <script>
 import PostList from "../components/PostList";
 import PostEditor from "../components/PostEditor";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -29,9 +30,10 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(["posts"]),
     threadPosts() {
       const postsIds = Object.values(this.thread.posts);
-      return Object.values(this.$store.state.posts).filter(post =>
+      return Object.values(this.posts).filter(post =>
         postsIds.includes(post[".key"])
       );
     },
