@@ -4,36 +4,46 @@ import sourceStore from "@/store/";
 sourceStore.commit = jest.fn();
 
 describe("createPost", () => {
-  const postId = "greatPost" + Math.random();
   const post = {
     text: "Hello guys",
-    publishedAt: Math.floor(Date.now() / 1000),
-    threadId: "-KsjWehQ--apjDBwSBCY",
-    userId: "jUjmgCurRRdzayqbRMO7aTG9X1G2",
-    ".key": postId
+    threadId: "-KsjWehQ--apjDBwSBCY"
   };
   beforeEach(() => {
-    actions.createPost(sourceStore, { post });
+    actions.createPost(
+      {
+        commit: sourceStore.commit,
+        rootState: sourceStore.state
+      },
+      { post }
+    );
   });
   test("Commits setPost mutation", () => {
     expect(sourceStore.commit).toHaveBeenCalledWith("setPost", {
-      post,
-      postId
+      post: expect.objectContaining({
+        ".key": expect.any(String),
+        publishedAt: expect.any(Number),
+        text: post.text,
+        threadId: post.threadId,
+        userId: expect.any(String)
+      }),
+      postId: expect.any(String)
     });
   });
   test("Commits appendPostToThread", () => {
     const threadId = "-KsjWehQ--apjDBwSBCY";
     expect(sourceStore.commit).toHaveBeenCalledWith("appendPostToThread", {
-      postId,
-      threadId
+      postId: expect.any(String),
+      threadId,
+      rootState: sourceStore.state
     });
   });
   test("Commits appendPostToUser", () => {
     expect(sourceStore.commit).toHaveBeenCalledWith(
       "appendPostToUser",
       expect.objectContaining({
-        postId,
-        userId: expect.any(String)
+        postId: expect.any(String),
+        userId: expect.any(String),
+        rootState: sourceStore.state
       })
     );
   });
