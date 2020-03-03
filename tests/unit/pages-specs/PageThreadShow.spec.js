@@ -6,6 +6,7 @@ import mockedSourceData from "../mocks/mockedSourceData";
 import Vuex from "vuex";
 import sourceStore from "../../../src/store";
 import postsGetters from "@/store/modules/posts/getters";
+import threadsGetters from "@/store/modules/threads/getters";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -14,7 +15,8 @@ describe("PageThreadShow", () => {
   const store = new Vuex.Store({
     state: sourceStore.state,
     getters: {
-      ...postsGetters
+      ...postsGetters,
+      ...threadsGetters
     }
   });
   const wrapper = shallowMount(PageThreadShow, {

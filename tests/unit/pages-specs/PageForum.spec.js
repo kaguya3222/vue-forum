@@ -4,6 +4,7 @@ import ThreadList from "../../../src/components/ThreadList";
 import mockedSourceData from "../mocks/mockedSourceData";
 import Vuex from "vuex";
 import sourceStore from "../../../src/store";
+import threadsGetters from "@/store/modules/threads/getters";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -11,12 +12,15 @@ localVue.use(Vuex);
 describe("PageForum", () => {
   const store = new Vuex.Store({
     state: sourceStore.state,
-    getters: {}
+    getters: {
+      ...threadsGetters
+    }
   });
   const wrapper = shallowMount(PageForum, {
     propsData: {
       id: mockedSourceData.forums[1][".key"]
     },
+    stubs: ["router-link"],
     localVue,
     store
   });
