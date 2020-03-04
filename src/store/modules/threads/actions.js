@@ -13,7 +13,7 @@ export default {
       publishedAt,
       userId
     };
-    commit("setThread", { threadId, thread, rootState });
+    commit("setThread", { threadId, thread });
     commit("appendThreadToForum", { forumId, threadId, rootState });
     commit("appendThreadToUser", { userId, threadId, rootState });
     dispatch("createPost", {

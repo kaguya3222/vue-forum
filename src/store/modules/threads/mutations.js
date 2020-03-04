@@ -1,8 +1,8 @@
 import Vue from "vue";
 
 export default {
-  setThread(state, { thread, threadId, rootState }) {
-    Vue.set(rootState.forumThreads.threads, threadId, thread);
+  setThread(state, { thread, threadId }) {
+    Vue.set(state.threads, threadId, thread);
   },
   appendThreadToForum(state, { forumId, threadId, rootState }) {
     const forum = rootState.forums[forumId];
