@@ -42,9 +42,9 @@
 export default {
   name: "PageThreadCreate",
   props: {
-    forum: {
+    forumId: {
       required: true,
-      type: Object
+      type: String
     }
   },
   data() {
@@ -52,6 +52,11 @@ export default {
       text: "",
       title: ""
     };
+  },
+  computed: {
+    forum() {
+      return this.$store.state.forums[this.forumId];
+    }
   },
   methods: {
     async save() {
