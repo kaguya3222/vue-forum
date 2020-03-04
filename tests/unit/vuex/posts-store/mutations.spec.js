@@ -2,6 +2,9 @@ import mutations from "../../../../src/store/modules/posts/mutations";
 import rootStore from "@/store/";
 import postsStore from "@/store/modules/posts/store";
 import usersStore from "@/store/modules/users/store";
+import mockedSourceData from "../../mocks/mockedSourceData";
+
+postsStore.state.posts = { ...mockedSourceData.posts };
 
 describe("setPost", () => {
   test("adds post to posts object", () => {
