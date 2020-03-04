@@ -7,7 +7,7 @@ describe("CategoryList", () => {
   test("Accepts CategoryListItem as a child component", () => {
     const wrapper = shallowMount(CategoryList, {
       propsData: {
-        categories: mockedSourceData.categories
+        categories: Object.values(mockedSourceData.categories)
       }
     });
     expect(wrapper.contains(CategoryListItem)).toBe(true);

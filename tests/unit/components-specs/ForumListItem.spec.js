@@ -5,7 +5,7 @@ import mockedSourceData from "../mocks/mockedSourceData";
 describe("ForumListItem", () => {
   const wrapper = mount(ForumListItem, {
     propsData: {
-      forum: mockedSourceData.forums[0]
+      forum: Object.values(mockedSourceData.forums)[0]
     },
     stubs: {
       "router-link": true
@@ -16,7 +16,7 @@ describe("ForumListItem", () => {
   });
 
   test("Counts threads number", () => {
-    const threads = Object.values(mockedSourceData.forums[0].threads);
+    const threads = Object.values(wrapper.vm.forum.threads);
     expect(wrapper.vm.threadsCount).toBe(threads.length);
   });
 });

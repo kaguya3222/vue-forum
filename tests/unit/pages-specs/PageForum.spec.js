@@ -18,7 +18,7 @@ describe("PageForum", () => {
   });
   const wrapper = shallowMount(PageForum, {
     propsData: {
-      id: mockedSourceData.forums[1][".key"]
+      id: Object.values(mockedSourceData.forums)[1][".key"]
     },
     stubs: ["router-link"],
     localVue,
@@ -34,7 +34,7 @@ describe("PageForum", () => {
     expect(wrapper.vm.forum[".key"]).toBe(wrapper.vm.id);
   });
   test("Creates threads array of certain forum", () => {
-    const thread = mockedSourceData.threads[1];
+    const thread = Object.values(mockedSourceData.threads)[1];
     const hasTread = wrapper.vm.forumThreads.some(
       forumThread => forumThread[".key"] === thread[".key"]
     );

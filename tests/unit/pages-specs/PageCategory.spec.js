@@ -15,7 +15,7 @@ describe("PageCategory", () => {
   });
   const wrapper = shallowMount(PageCategory, {
     propsData: {
-      id: mockedSourceData.categories[0][".key"]
+      id: Object.values(mockedSourceData.categories)[0][".key"]
     },
     localVue,
     store

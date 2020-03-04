@@ -17,7 +17,7 @@ describe("ThreadListItem", () => {
   });
   const wrapper = shallowMount(ThreadListItem, {
     propsData: {
-      thread: mockedSourceData.threads[0]
+      thread: Object.values(mockedSourceData.threads)[0]
     },
     stubs: {
       "app-date": true,

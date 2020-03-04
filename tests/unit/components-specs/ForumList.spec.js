@@ -7,7 +7,7 @@ describe("ForumList", () => {
   test("Accepts ForumListItem as a child component", () => {
     const wrapper = shallowMount(ForumList, {
       propsData: {
-        forums: mockedSourceData.forums
+        forums: Object.values(mockedSourceData.forums)
       }
     });
     expect(wrapper.contains(ForumListItem)).toBe(true);

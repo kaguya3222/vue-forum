@@ -21,7 +21,7 @@ describe("PageThreadShow", () => {
   });
   const wrapper = shallowMount(PageThreadShow, {
     propsData: {
-      threadId: mockedSourceData.threads[0][".key"]
+      threadId: Object.values(mockedSourceData.threads)[0][".key"]
     },
     stubs: {
       "app-date": true

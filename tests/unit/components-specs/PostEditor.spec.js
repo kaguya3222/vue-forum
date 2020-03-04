@@ -23,7 +23,7 @@ describe("PostEditor", () => {
   });
   const wrapper = mount(PostEditor, {
     propsData: {
-      threadId: mockedSourceData.threads[0][".key"]
+      threadId: Object.values(mockedSourceData.threads)[0][".key"]
     },
     localVue,
     store

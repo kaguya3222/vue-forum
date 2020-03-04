@@ -7,7 +7,7 @@ rootStore.commit = jest.fn();
 describe("updateUser", () => {
   let user;
   beforeEach(() => {
-    user = mockedSourceData.users[0];
+    user = Object.values(mockedSourceData.users)[0];
     actions.updateUser(rootStore, user);
   });
   test("commits setUser mutation", () => {

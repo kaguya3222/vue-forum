@@ -15,7 +15,7 @@ describe("UserProfileCardEditor", () => {
   const $router = {
     push: jest.fn()
   };
-  const user = mockedSourceData.users[0];
+  const user = Object.values(mockedSourceData.users)[0];
   const wrapper = mount(UserProfileCardEditor, {
     propsData: {
       user,

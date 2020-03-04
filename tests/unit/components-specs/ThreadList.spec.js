@@ -7,7 +7,7 @@ describe("ThreadList", () => {
   test("Accepts ThreadListItem as a component", () => {
     const wrapper = shallowMount(ThreadList, {
       propsData: {
-        threads: mockedSourceData.threads
+        threads: Object.values(mockedSourceData.threads)
       }
     });
     expect(wrapper.contains(ThreadListItem)).toBe(true);

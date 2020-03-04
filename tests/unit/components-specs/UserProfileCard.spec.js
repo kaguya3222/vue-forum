@@ -4,7 +4,7 @@ import mockedSourceData from "../mocks/mockedSourceData";
 import { countObjectProperties } from "../../../src/helpers";
 
 describe("UserProfileCard", () => {
-  const user = mockedSourceData.users[0];
+  const user = Object.values(mockedSourceData.users)[0];
   const wrapper = mount(UserProfileCard, {
     propsData: {
       user,

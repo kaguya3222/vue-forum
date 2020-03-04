@@ -15,7 +15,7 @@ describe("CategoryListItem", () => {
   });
   const wrapper = shallowMount(CategoryListItem, {
     propsData: {
-      category: mockedSourceData.categories[0]
+      category: Object.values(mockedSourceData.categories)[0]
     },
     stubs: {
       "router-link": true
@@ -31,7 +31,7 @@ describe("CategoryListItem", () => {
     expect(wrapper.contains(ForumList)).toBe(true);
   });
   test("Creates forums array of certain category", () => {
-    const forum = mockedSourceData.forums[0];
+    const forum = Object.values(mockedSourceData.forums)[0];
     const hasForum = wrapper.vm.categoryForums.some(
       categoryForum => categoryForum[".key"] === forum[".key"]
     );
