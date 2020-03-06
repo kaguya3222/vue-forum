@@ -29,7 +29,9 @@
       </div>
 
       <div class="btn-group">
-        <button class="btn btn-ghost">Cancel</button>
+        <button class="btn btn-ghost" @click="cancel" type="button">
+          Cancel
+        </button>
         <button class="btn btn-blue" type="submit" name="Publish">
           Publish
         </button>
@@ -66,6 +68,10 @@ export default {
         text: this.text
       });
       await this.$router.push({ name: "ThreadShow", params: { threadId } });
+    },
+    cancel() {
+      const forumId = this.forumId;
+      this.$router.push({ name: "Forum", params: { id: forumId } });
     }
   }
 };
