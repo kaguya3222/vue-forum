@@ -11,5 +11,6 @@ export default {
       rootState
     });
     commit("appendPostToUser", { postId, userId: post.userId, rootState });
+    return Promise.resolve(post);
   }
 };
