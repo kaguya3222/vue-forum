@@ -28,5 +28,14 @@ export default {
       });
     });
     return threadId;
+  },
+  async updateThread({ state, commit, rootState }, { title, text, threadId }) {
+    const thread = state.threads[threadId];
+    const post = rootState.forumPosts.posts[thread.firstPostId];
+    const newThread = { ...thread, title };
+    const newPost = { ...post, text };
+    commit("setThread", { thread: newThread, threadId });
+    commit("setPost", { post: newPost, postId: newPost[".key"] });
+    return newThread[".key"];
   }
 };
