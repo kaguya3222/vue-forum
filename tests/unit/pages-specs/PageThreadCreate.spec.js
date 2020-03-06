@@ -46,10 +46,21 @@ describe("PageThreadCreate", function() {
       });
     });
     test("Redirects user to 'ThreadShow' route after form is submitted", () => {
-      store.dispatch = jest.fn().mockResolvedValue("Thread id");
       expect($router.push).toHaveBeenCalledWith({
         name: "ThreadShow",
         params: expect.any(Object)
+      });
+    });
+  });
+  describe("cancel", function() {
+    const cancelButton = wrapper.find(".btn-ghost");
+    test("Redirects user to forum page when 'cancel' button is clicked", () => {
+      cancelButton.trigger("click");
+      expect($router.push).toHaveBeenCalledWith({
+        name: "Forum",
+        params: {
+          id: wrapper.vm.forumId
+        }
       });
     });
   });
