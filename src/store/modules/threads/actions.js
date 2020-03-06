@@ -21,6 +21,11 @@ export default {
         text,
         threadId
       }
+    }).then(post => {
+      commit("setThread", {
+        threadId,
+        thread: { ...thread, firstPostId: post[".key"] }
+      });
     });
     return threadId;
   }
