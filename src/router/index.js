@@ -45,6 +45,12 @@ const routes = [
     props: true
   },
   {
+    path: "/thread/:threadId/edit",
+    name: "ThreadEdit",
+    component: () => import("@/pages/PageThreadEdit"),
+    props: true
+  },
+  {
     path: "*",
     name: "NotFound",
     component: () => import("@/pages/PageNotFound")
