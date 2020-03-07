@@ -2,6 +2,13 @@
   <div class="col-large push-top">
     <h1>{{ thread.title }}</h1>
 
+    <router-link
+      :to="{ name: 'ThreadEdit', threadId: this.threadId }"
+      class="btn-green btn-small"
+      tag="button"
+      >Edit</router-link
+    >
+
     <p>
       By <a href="#" class="link-unstyled">Robin</a>,
       <app-date :unixDate="thread.publishedAt" />.
