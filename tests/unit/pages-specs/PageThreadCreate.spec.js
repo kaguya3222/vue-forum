@@ -1,5 +1,6 @@
-import { createLocalVue, mount } from "@vue/test-utils";
+import { createLocalVue, shallowMount } from "@vue/test-utils";
 import PageThreadCreate from "../../../src/pages/PageThreadCreate";
+import ThreadEditor from "../../../src/components/ThreadEditor";
 import rootStore from "@/store/";
 import Vuex from "vuex";
 
@@ -14,7 +15,7 @@ describe("PageThreadCreate", function() {
   const $router = {
     push: jest.fn()
   };
-  const wrapper = mount(PageThreadCreate, {
+  const wrapper = shallowMount(PageThreadCreate, {
     propsData: {
       forumId: "-KpOx5Y4AqRr3sB4Ybwj"
     },
@@ -27,22 +28,19 @@ describe("PageThreadCreate", function() {
   test("Correctly shows thread creation form", () => {
     expect(wrapper).toMatchSnapshot();
   });
+  test("Accepts ThreadEditor as a child component", () => {
+    expect(wrapper.contains(ThreadEditor)).toBe(true);
+  });
   describe("save", () => {
-    const threadTitleInput = wrapper.find("#thread_title");
-    const threadContentInput = wrapper.find("#thread_content");
-    const threadCreationForm = wrapper.find("form");
+    wrapper.vm.$on("save", wrapper.vm.save);
     beforeEach(() => {
-      threadTitleInput.element.value = "Thread title";
-      threadTitleInput.trigger("input");
-      threadContentInput.element.value = "Thread content";
-      threadContentInput.trigger("input");
-      threadCreationForm.trigger("submit");
+      wrapper.vm.$emit("save", { text: "", title: "" });
     });
-    test("Dispatches 'createThread' action after form is submitted", () => {
+    test("Dispatches 'createThread' when 'save' event is emitted", () => {
       expect(store.dispatch).toHaveBeenCalledWith("createThread", {
         forumId: wrapper.vm.forum[".key"],
-        title: wrapper.vm.title,
-        text: wrapper.vm.text
+        title: expect.any(String),
+        text: expect.any(String)
       });
     });
     test("Redirects user to 'ThreadShow' route after form is submitted", () => {
@@ -53,9 +51,9 @@ describe("PageThreadCreate", function() {
     });
   });
   describe("cancel", function() {
-    const cancelButton = wrapper.find(".btn-ghost");
-    test("Redirects user to forum page when 'cancel' button is clicked", () => {
-      cancelButton.trigger("click");
+    wrapper.vm.$on("cancel", wrapper.vm.cancel);
+    test("Redirects user to forum page when 'cancel' event is emitted", () => {
+      wrapper.vm.$emit("cancel");
       expect($router.push).toHaveBeenCalledWith({
         name: "Forum",
         params: {
