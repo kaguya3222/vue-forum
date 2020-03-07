@@ -23,9 +23,7 @@ describe("PageThreadShow", () => {
     propsData: {
       threadId: Object.values(mockedSourceData.threads)[0][".key"]
     },
-    stubs: {
-      "app-date": true
-    },
+    stubs: ["app-date", "router-link"],
     localVue,
     store
   });
