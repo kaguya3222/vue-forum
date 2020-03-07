@@ -1,15 +1,15 @@
 import threadsActions from "@/store/modules/threads/actions";
 import rootStore from "@/store/";
 
+rootStore.dispatch = jest.fn().mockResolvedValue({});
 rootStore.commit = jest.fn();
-rootStore.dispatch = jest.fn();
 
 describe("createThread", () => {
   const text = "Hello guys!";
   const title = "Thread title";
   const forumId = "-KpOx5Y4AqRr3sB4Ybwj";
-  beforeEach(async () => {
-    await threadsActions.createThread(
+  beforeEach(() => {
+    threadsActions.createThread(
       { ...rootStore, rootState: rootStore.state },
       { text, title, forumId }
     );
