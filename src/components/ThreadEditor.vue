@@ -24,7 +24,7 @@
     </div>
 
     <div class="btn-group">
-      <button class="btn btn-ghost" @click="cancel" type="button">
+      <button class="btn btn-ghost" @click.prevent="cancel">
         Cancel
       </button>
       <button class="btn btn-blue" type="submit" name="Publish">
