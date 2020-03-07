@@ -43,3 +43,31 @@ describe("createThread", () => {
     });
   });
 });
+
+describe("updateThread", () => {
+  const title = "Thread title";
+  const text = "Hello guys!";
+  const threadId = "-KsjWehQ--apjDBwSBCY";
+  beforeEach(() => {
+    threadsActions.updateThread(
+      {
+        ...rootStore,
+        state: rootStore.state.forumThreads,
+        rootState: rootStore.state
+      },
+      { title, text, threadId }
+    );
+  });
+  test("Commits setThread", () => {
+    expect(rootStore.commit).toHaveBeenCalledWith("setThread", {
+      thread: expect.any(Object),
+      threadId
+    });
+  });
+  test("Commits setPost", () => {
+    expect(rootStore.commit).toHaveBeenCalledWith("setPost", {
+      post: expect.any(Object),
+      postId: expect.any(String)
+    });
+  });
+});
