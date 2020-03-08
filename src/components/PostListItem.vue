@@ -25,7 +25,11 @@
         ></a>
       </template>
       <div class="col-full" v-else>
-        <post-editor :post="post" @save="editing = false" />
+        <post-editor
+          :post="post"
+          @save="editing = false"
+          @cancel="editing = false"
+        />
       </div>
     </div>
 
