@@ -29,7 +29,10 @@ describe("PostListItem", () => {
   test("Shows post data in posts list", () => {
     expect(wrapper).toMatchSnapshot();
   });
-  test("Accepts PostEditor as a child component", () => {
-    expect(wrapper.contains(PostEditor)).toBe(true);
+  test("Accepts PostEditor as a child component if 'editing' data property is true", () => {
+    wrapper.setData({ editing: true });
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.contains(PostEditor)).toBe(true);
+    });
   });
 });
