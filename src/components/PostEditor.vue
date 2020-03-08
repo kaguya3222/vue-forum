@@ -11,6 +11,9 @@
       ></textarea>
     </div>
     <div class="form-actions">
+      <button v-if="isUpdate" @click.prevent="cancel" class="btn btn-ghost">
+        Cancel
+      </button>
       <button class="btn-blue">
         {{ isUpdate ? "Edit post" : "Submit post" }}
       </button>
@@ -64,6 +67,9 @@ export default {
         text: this.newPostText
       };
       return this.$store.dispatch("updatePost", payload);
+    },
+    cancel() {
+      this.$emit("cancel");
     }
   }
 };
