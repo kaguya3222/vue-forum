@@ -15,7 +15,17 @@ export default {
   },
   updatePost({ commit, rootState }, { postId, text }) {
     const post = rootState.forumPosts.posts[postId];
-    commit("setPost", { postId, post: { ...post, text } });
+    commit("setPost", {
+      postId,
+      post: {
+        ...post,
+        text,
+        edited: {
+          at: Math.floor(Date.now() / 1000),
+          by: rootState.forumUsers.authId
+        }
+      }
+    });
     return post;
   }
 };
