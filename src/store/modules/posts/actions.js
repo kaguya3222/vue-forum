@@ -12,5 +12,10 @@ export default {
     });
     commit("appendPostToUser", { postId, userId: post.userId, rootState });
     return Promise.resolve(post);
+  },
+  updatePost({ commit, rootState }, { postId, text }) {
+    const post = rootState.forumPosts.posts[postId];
+    commit("setPost", { postId, post: { ...post, text } });
+    return post;
   }
 };
