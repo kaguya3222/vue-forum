@@ -2,34 +2,20 @@ import Vuex from "vuex";
 import { createLocalVue, mount } from "@vue/test-utils";
 import PostEditor from "../../../src/components/PostEditor";
 import mockedSourceData from "../mocks/mockedSourceData";
-import postsStore from "../../../src/store/modules/posts/store";
-import userStore from "../../../src/store/modules/users/store";
 import rootStore from "@/store/";
-import getters from "../../../src/store/modules/users/getters";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("PostEditor", () => {
   const store = new Vuex.Store({
-    state: {
-      ...userStore.state,
-      ...postsStore.state,
-      ...rootStore.state
-    },
-    getters: {
-      ...getters
-    }
+    state: rootStore.state
   });
   const wrapper = mount(PostEditor, {
-    propsData: {
-      threadId: Object.values(mockedSourceData.threads)[0][".key"]
-    },
     localVue,
     store
   });
 
-  const addPostSpy = jest.spyOn(wrapper.vm, "addPost");
   let postInput;
   wrapper.vm.$store.dispatch = jest.fn();
 
@@ -43,20 +29,25 @@ describe("PostEditor", () => {
     expect(wrapper.vm.newPostText).toBe("Hello guys!");
   });
 
-  test("'addPost' method is called when post is submitted", () => {
-    const postForm = wrapper.find("form");
-    postForm.trigger("submit");
-    expect(addPostSpy).toHaveBeenCalled();
-  });
-
-  test("Dispatches 'createPost' action when post is submitted", () => {
-    const postForm = wrapper.find("form");
-    postForm.trigger("submit");
-    expect(wrapper.vm.$store.dispatch).toHaveBeenCalledWith("createPost", {
-      post: expect.objectContaining({
-        text: "Hello guys!",
-        threadId: wrapper.vm.threadId,
-      })
+  describe("form submit methods", () => {
+    const createPostSpy = jest.spyOn(wrapper.vm, "createPost");
+    describe("'createPost' method", () => {
+      beforeEach(() => {
+        wrapper.setProps({
+          threadId: Object.values(mockedSourceData.threads)[0][".key"]
+        });
+        const postForm = wrapper.find("form");
+        postForm.trigger("submit");
+      });
+      test("Is called when post is created", () => {
+        expect(createPostSpy).toHaveBeenCalled();
+      });
+      test("Dispatches 'createPost' action", () => {
+        expect(wrapper.vm.$store.dispatch).toHaveBeenCalledWith("createPost", {
+          post: expect.objectContaining({
+            text: "Hello guys!",
+            threadId: wrapper.vm.threadId
+          })
+        });
+      });
     });
-  });
-});
