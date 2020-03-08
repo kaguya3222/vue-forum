@@ -26,13 +26,14 @@ export default {
     });
     return threadId;
   },
-  updateThread({ state, commit, rootState }, { title, text, threadId }) {
-    const thread = state.threads[threadId];
-    const post = rootState.forumPosts.posts[thread.firstPostId];
+  async updateThread(
+    { commit, rootState, dispatch },
+    { title, text, threadId }
+  ) {
+    const thread = rootState.forumThreads.threads[threadId];
     const newThread = { ...thread, title };
-    const newPost = { ...post, text };
     commit("setThread", { thread: newThread, threadId });
-    commit("setPost", { post: newPost, postId: newPost[".key"] });
+    await dispatch("updatePost", { postId: thread.firstPostId, text });
     return newThread[".key"];
   }
 };
