@@ -51,3 +51,25 @@ describe("PostEditor", () => {
         });
       });
     });
+
+    describe("'updatePost' method", () => {
+      const updatePostSpy = jest.spyOn(wrapper.vm, "updatePost");
+      beforeEach(() => {
+        const post = Object.values(mockedSourceData.posts)[0];
+        wrapper.setProps({ post: { ...post } });
+        const postForm = wrapper.find("form");
+        postForm.trigger("submit");
+      });
+      test("Is called when post is updated", () => {
+        expect(updatePostSpy).toHaveBeenCalled();
+      });
+
+      test("Dispatches 'updatePost' action", () => {
+        expect(wrapper.vm.$store.dispatch).toHaveBeenCalledWith("updatePost", {
+          postId: wrapper.vm.post[".key"],
+          text: wrapper.vm.newPostText
+        });
+      });
+    });
+  });
+});
