@@ -15,7 +15,7 @@
         Cancel
       </button>
       <button class="btn-blue">
-        {{ isUpdate ? "Edit post" : "Submit post" }}
+        {{ isUpdate ? "Update post" : "Submit post" }}
       </button>
     </div>
   </form>
