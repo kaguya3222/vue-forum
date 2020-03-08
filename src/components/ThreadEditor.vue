@@ -61,7 +61,7 @@ export default {
     }
   },
   methods: {
-    async save() {
+    save() {
       this.$emit("save", {
         text: this.form.text,
         title: this.form.title
