@@ -1,5 +1,5 @@
 <template>
-  <span class="post-date text-faded" :title="unixDate | humanFriendlyDate">
+  <span :title="unixDate | humanFriendlyDate">
     {{ unixDate | relativeDate }}
   </span>
 </template>
