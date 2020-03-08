@@ -64,10 +64,10 @@ describe("updateThread", () => {
       threadId
     });
   });
-  test("Commits setPost", () => {
-    expect(rootStore.commit).toHaveBeenCalledWith("setPost", {
-      post: expect.any(Object),
-      postId: expect.any(String)
+  test("Dispatches updatePost", () => {
+    expect(rootStore.dispatch).toHaveBeenCalledWith("updatePost", {
+      postId: expect.any(String),
+      text: expect.any(String)
     });
   });
 });
