@@ -11,8 +11,11 @@
     </div>
 
     <div class="post-content">
-      <div>
+      <div v-if="!editing">
         {{ post.text }}
+      </div>
+      <div class="col-full" v-else>
+        <post-editor :post="post" @save="editing = false" />
       </div>
     </div>
 
@@ -21,17 +24,27 @@
 </template>
 
 <script>
+import PostEditor from "./PostEditor";
+
 import { countObjectProperties } from "../helpers";
 import { mapGetters } from "vuex";
 
 export default {
+  name: "PostListItem.vue",
+  components: {
+    PostEditor
+  },
   props: {
     post: {
       required: true,
       type: Object
     }
   },
-  name: "PostListItem.vue",
+  data() {
+    return {
+      editing: true
+    };
+  },
   computed: {
     ...mapGetters(["users"]),
     user() {
