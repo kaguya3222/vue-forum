@@ -11,15 +11,28 @@
     </div>
 
     <div class="post-content">
-      <div v-if="!editing">
-        {{ post.text }}
-      </div>
+      <template v-if="!editing">
+        <div class="post-text">
+          {{ post.text }}
+        </div>
+        <a
+          @click.prevent="editing = true"
+          href="#"
+          style="margin-left: auto;"
+          class="link-unstyled"
+          title="Make a change"
+          ><i class="fa fa-pencil"></i
+        ></a>
+      </template>
       <div class="col-full" v-else>
         <post-editor :post="post" @save="editing = false" />
       </div>
     </div>
 
-    <app-date :unixDate="post.publishedAt" />
+    <div class="post-date">
+      <div v-if="post.edited" class="edition-info">edited</div>
+      <app-date :unixDate="post.publishedAt" />
+    </div>
   </div>
 </template>
 
@@ -42,7 +55,7 @@ export default {
   },
   data() {
     return {
-      editing: true
+      editing: false
     };
   },
   computed: {
@@ -56,3 +69,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.post-text {
+  margin-right: 10px;
+}
+</style>
