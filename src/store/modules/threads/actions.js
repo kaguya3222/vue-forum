@@ -1,8 +1,5 @@
 export default {
-  async createThread(
-    { commit, rootState, dispatch },
-    { text, title, forumId }
-  ) {
+  createThread({ commit, rootState, dispatch }, { text, title, forumId }) {
     const threadId = "greatThread" + Math.random();
     const userId = rootState.forumUsers.authId;
     const publishedAt = Math.floor(Date.now() / 1000);
@@ -29,7 +26,7 @@ export default {
     });
     return threadId;
   },
-  async updateThread({ state, commit, rootState }, { title, text, threadId }) {
+  updateThread({ state, commit, rootState }, { title, text, threadId }) {
     const thread = state.threads[threadId];
     const post = rootState.forumPosts.posts[thread.firstPostId];
     const newThread = { ...thread, title };
