@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="addPost()">
+  <form @submit.prevent="save">
     <div class="form-group">
       <textarea
         name=""
@@ -11,7 +11,9 @@
       ></textarea>
     </div>
     <div class="form-actions">
-      <button class="btn-blue">Submit post</button>
+      <button class="btn-blue">
+        {{ isUpdate ? "Edit post" : "Submit post" }}
+      </button>
     </div>
   </form>
 </template>
@@ -22,13 +24,16 @@ export default {
   name: "PostEditor.vue",
   props: {
     threadId: {
-      required: true,
+      required: false,
       type: String
+    },
+    post: {
+      type: Object
     }
   },
   data() {
     return {
-      newPostText: ""
+      newPostText: this.post ? this.post.text : ""
     };
   },
   computed: {
@@ -36,18 +41,29 @@ export default {
       user: "authUser",
       threads: "threads"
     }),
-    thread() {
-      return this.threads[this.threadId];
+    isUpdate() {
+      return !!this.post;
     }
   },
   methods: {
-    addPost() {
+    save() {
+      const post = this.isUpdate ? this.updatePost() : this.createPost();
+      this.$emit("save", { post });
+    },
+    createPost() {
       const post = {
         text: this.newPostText,
         threadId: this.threadId
       };
-      this.$store.dispatch("createPost", { post });
       this.newPostText = "";
+      return this.$store.dispatch("createPost", { post });
+    },
+    updatePost() {
+      const payload = {
+        postId: this.post[".key"],
+        text: this.newPostText
+      };
+      return this.$store.dispatch("updatePost", payload);
     }
   }
 };
