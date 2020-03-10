@@ -1,5 +1,5 @@
 import getters from "../../../../src/store/modules/users/getters";
-import usersStore from "@/store/modules/users/store";
+import mockedRootStore from "../../mocks/mockedRootStore";
 
 describe("authUser", () => {
   test("returns user object with given authorization id", () => {
@@ -13,9 +13,11 @@ describe("authUser", () => {
       usernameLower: "chrisvfritz",
       ".key": "38St7Q8Zi2N1SPa5ahzssq9kbyp1"
     };
-    usersStore.state.authId = user[".key"];
-    usersStore.state.users["38St7Q8Zi2N1SPa5ahzssq9kbyp1"] = user;
-    const authUser = getters.authUser(usersStore.state);
+    mockedRootStore.state.forumUsers.authId = user[".key"];
+    mockedRootStore.state.forumUsers.users[
+      "38St7Q8Zi2N1SPa5ahzssq9kbyp1"
+    ] = user;
+    const authUser = getters.authUser(mockedRootStore.state.forumUsers);
     expect(authUser).toEqual(user);
   });
 });

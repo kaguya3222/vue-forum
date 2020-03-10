@@ -1,16 +1,13 @@
 import mutations from "../../../../src/store/modules/posts/mutations";
-import rootStore from "@/store/";
-import postsStore from "@/store/modules/posts/store";
-import usersStore from "@/store/modules/users/store";
-import mockedSourceData from "../../mocks/mockedSourceData";
+import mockedRootStore from "../../mocks/mockedRootStore";
 
-postsStore.state.posts = { ...mockedSourceData.posts };
+const rootStore = { ...mockedRootStore };
 
 describe("setPost", () => {
   test("adds post to posts object", () => {
-    const posts = postsStore.state.posts;
+    const posts = rootStore.state.forumPosts.posts;
     const postsLengthBeforeSet = Object.values(posts).length;
-    mutations.setPost(postsStore.state, {
+    mutations.setPost(rootStore.state.forumPosts, {
       post: {
         text: "Hello guys",
         publishedAt: Math.floor(Date.now() / 1000),
@@ -27,9 +24,9 @@ describe("setPost", () => {
 describe("appendPostToThread", () => {
   test("adds post to thread object", () => {
     const threadId = "-KsjWehQ--apjDBwSBCY";
-    const threadPosts = rootStore.state.threads[threadId].posts;
+    const threadPosts = rootStore.state.forumThreads.threads[threadId].posts;
     const threadPostsBeforeSet = Object.values(threadPosts).length;
-    mutations.appendPostToThread(postsStore.state, {
+    mutations.appendPostToThread(rootStore.state.forumPosts, {
       postId: "greatPost" + Math.random(),
       threadId,
       rootState: rootStore.state
@@ -42,9 +39,9 @@ describe("appendPostToThread", () => {
 describe("appendPostToUser", () => {
   test("adds post to users object", () => {
     const userId = "jUjmgCurRRdzayqbRMO7aTG9X1G2";
-    const userPosts = usersStore.state.users[userId].posts;
+    const userPosts = rootStore.state.forumUsers.users[userId].posts;
     const userPostsBeforeSet = Object.values(userPosts).length;
-    mutations.appendPostToUser(postsStore.state, {
+    mutations.appendPostToUser(rootStore.state.forumPosts, {
       postId: "greatPost" + Math.random(),
       userId,
       rootState: rootStore.state

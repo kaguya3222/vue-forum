@@ -1,11 +1,12 @@
 import threadsMutations from "@/store/modules/threads/mutations";
 import threadsStore from "@/store/modules/threads/store";
-import rootStore from "@/store/";
 import mockedSourceData from "../../mocks/mockedSourceData";
 import { countObjectProperties } from "../../../../src/helpers";
+import mockedRootStore from "../../mocks/mockedRootStore";
+
+const rootStore = { ...mockedRootStore };
 
 const thread = Object.values(threadsStore.state.threads)[0];
-threadsStore.state.threads = { ...mockedSourceData.threads };
 
 describe("setThread", function() {
   test("Adds thread to threads object", () => {
@@ -43,17 +44,19 @@ describe("appendThreadToForum", () => {
 });
 
 describe("appendThreadToUser", function() {
-  rootStore.state.forumUsers.users = { ...mockedSourceData.users };
-  const user = Object.values(rootStore.state.forumUsers.users)[0];
-  const userId = user[".key"];
-  const userThreadsLengthBeforeAppend = countObjectProperties(user.threads);
-  threadsMutations.appendThreadToUser(threadsStore.state, {
-    userId,
-    threadId: thread[".key"],
-    rootState: rootStore.state
+  test("Adds thread to certain user", () => {
+    rootStore.state.forumUsers.users = { ...mockedSourceData.users };
+    const user = Object.values(rootStore.state.forumUsers.users)[0];
+    const userId = user[".key"];
+    const userThreadsLengthBeforeAppend = countObjectProperties(user.threads);
+    threadsMutations.appendThreadToUser(threadsStore.state, {
+      userId,
+      threadId: thread[".key"],
+      rootState: rootStore.state
+    });
+    const userThreadsLengthAfterAppend = countObjectProperties(user.threads);
+    expect(userThreadsLengthAfterAppend > userThreadsLengthBeforeAppend).toBe(
+      true
+    );
   });
-  const userThreadsLengthAfterAppend = countObjectProperties(user.threads);
-  expect(userThreadsLengthAfterAppend > userThreadsLengthBeforeAppend).toBe(
-    true
-  );
 });

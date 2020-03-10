@@ -1,6 +1,8 @@
 import actions from "../../../../src/store/modules/users/actions";
-import rootStore from "@/store/";
 import mockedSourceData from "../../mocks/mockedSourceData";
+import mockedRootStore from "../../mocks/mockedRootStore";
+
+const rootStore = { ...mockedRootStore };
 
 rootStore.commit = jest.fn();
 

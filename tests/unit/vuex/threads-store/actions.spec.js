@@ -1,5 +1,7 @@
 import threadsActions from "@/store/modules/threads/actions";
-import rootStore from "@/store/";
+import mockedRootStore from "../../mocks/mockedRootStore";
+
+const rootStore = { ...mockedRootStore };
 
 rootStore.dispatch = jest.fn().mockResolvedValue({});
 rootStore.commit = jest.fn();
@@ -52,7 +54,6 @@ describe("updateThread", () => {
     threadsActions.updateThread(
       {
         ...rootStore,
-        state: rootStore.state.forumThreads,
         rootState: rootStore.state
       },
       { title, text, threadId }

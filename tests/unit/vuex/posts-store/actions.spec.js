@@ -1,7 +1,9 @@
 import actions from "../../../../src/store/modules/posts/actions";
-import sourceStore from "@/store/";
+import mockedRootStore from "../../mocks/mockedRootStore";
 
-sourceStore.commit = jest.fn();
+const rootStore = { ...mockedRootStore };
+
+rootStore.commit = jest.fn();
 
 describe("createPost", () => {
   const post = {
@@ -11,14 +13,14 @@ describe("createPost", () => {
   beforeEach(() => {
     actions.createPost(
       {
-        commit: sourceStore.commit,
-        rootState: sourceStore.state
+        commit: rootStore.commit,
+        rootState: rootStore.state
       },
       { post }
     );
   });
   test("Commits setPost mutation", () => {
-    expect(sourceStore.commit).toHaveBeenCalledWith("setPost", {
+    expect(rootStore.commit).toHaveBeenCalledWith("setPost", {
       post: expect.objectContaining({
         ".key": expect.any(String),
         publishedAt: expect.any(Number),
@@ -31,19 +33,19 @@ describe("createPost", () => {
   });
   test("Commits appendPostToThread", () => {
     const threadId = "-KsjWehQ--apjDBwSBCY";
-    expect(sourceStore.commit).toHaveBeenCalledWith("appendPostToThread", {
+    expect(rootStore.commit).toHaveBeenCalledWith("appendPostToThread", {
       postId: expect.any(String),
       threadId,
-      rootState: sourceStore.state
+      rootState: rootStore.state
     });
   });
   test("Commits appendPostToUser", () => {
-    expect(sourceStore.commit).toHaveBeenCalledWith(
+    expect(rootStore.commit).toHaveBeenCalledWith(
       "appendPostToUser",
       expect.objectContaining({
         postId: expect.any(String),
         userId: expect.any(String),
-        rootState: sourceStore.state
+        rootState: rootStore.state
       })
     );
   });
