@@ -1,17 +1,17 @@
 import { createLocalVue, shallowMount } from "@vue/test-utils";
 import PageThreadEdit from "../../../src/pages/PageThreadEdit";
 import ThreadEditor from "../../../src/components/ThreadEditor";
-import rootStore from "@/store/";
 import threadGetters from "@/store/modules/threads/getters";
 import postsGetters from "@/store/modules/posts/getters";
 import Vuex from "vuex";
+import mockedSourceData from "../mocks/mockedSourceData";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("PageThreadEdit", () => {
   const store = new Vuex.Store({
-    state: rootStore.state,
+    state: { ...mockedSourceData },
     getters: {
       ...threadGetters,
       ...postsGetters

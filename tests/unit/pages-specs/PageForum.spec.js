@@ -3,7 +3,6 @@ import PageForum from "../../../src/pages/PageForum";
 import ThreadList from "../../../src/components/ThreadList";
 import mockedSourceData from "../mocks/mockedSourceData";
 import Vuex from "vuex";
-import sourceStore from "../../../src/store";
 import threadsGetters from "@/store/modules/threads/getters";
 
 const localVue = createLocalVue();
@@ -11,7 +10,7 @@ localVue.use(Vuex);
 
 describe("PageForum", () => {
   const store = new Vuex.Store({
-    state: sourceStore.state,
+    state: { ...mockedSourceData },
     getters: {
       ...threadsGetters
     }

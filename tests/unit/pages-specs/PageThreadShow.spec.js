@@ -4,7 +4,6 @@ import PostList from "../../../src/components/PostList";
 import PostEditor from "../../../src/components/PostEditor";
 import mockedSourceData from "../mocks/mockedSourceData";
 import Vuex from "vuex";
-import sourceStore from "../../../src/store";
 import postsGetters from "@/store/modules/posts/getters";
 import threadsGetters from "@/store/modules/threads/getters";
 
@@ -13,7 +12,7 @@ localVue.use(Vuex);
 
 describe("PageThreadShow", () => {
   const store = new Vuex.Store({
-    state: sourceStore.state,
+    state: { ...mockedSourceData },
     getters: {
       ...postsGetters,
       ...threadsGetters

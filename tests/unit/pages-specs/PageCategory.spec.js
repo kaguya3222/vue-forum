@@ -3,14 +3,13 @@ import { shallowMount, createLocalVue } from "@vue/test-utils";
 import PageCategory from "../../../src/pages/PageCategory";
 import CategoryListItem from "../../../src/components/CategoryListItem";
 import mockedSourceData from "../mocks/mockedSourceData";
-import sourceStore from "../../../src/store/index";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("PageCategory", () => {
   const store = new Vuex.Store({
-    state: sourceStore.state,
+    state: { ...mockedSourceData },
     getters: {}
   });
   const wrapper = shallowMount(PageCategory, {

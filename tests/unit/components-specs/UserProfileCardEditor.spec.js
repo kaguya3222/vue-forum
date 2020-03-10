@@ -2,7 +2,6 @@ import { mount, createLocalVue } from "@vue/test-utils";
 import UserProfileCardEditor from "../../../src/components/UserProfileCardEditor";
 import mockedSourceData from "../mocks/mockedSourceData";
 import { countObjectProperties } from "../../../src/helpers";
-import rootStore from "@/store/";
 import Vuex from "vuex";
 
 const localVue = createLocalVue();
@@ -10,7 +9,7 @@ localVue.use(Vuex);
 
 describe("UserProfileCardEditor", () => {
   const store = new Vuex.Store({
-    state: rootStore.state
+    state: { ...mockedSourceData }
   });
   const $router = {
     push: jest.fn()

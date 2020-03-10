@@ -2,7 +2,6 @@ import Vuex from "vuex";
 import { createLocalVue, shallowMount } from "@vue/test-utils";
 import PostListItem from "../../../src/components/PostListItem";
 import mockedSourceData from "../mocks/mockedSourceData";
-import sourceStore from "../../../src/store/index";
 import userGetters from "@/store/modules/users/getters";
 import PostEditor from "../../../src/components/PostEditor";
 
@@ -11,7 +10,7 @@ localVue.use(Vuex);
 
 describe("PostListItem", () => {
   const store = new Vuex.Store({
-    state: sourceStore.state,
+    state: { ...mockedSourceData },
     getters: {
       ...userGetters
     }

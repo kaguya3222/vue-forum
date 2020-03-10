@@ -4,8 +4,6 @@ import PageProfile from "../../../src/pages/PageProfile";
 import PostList from "../../../src/components/PostList";
 import UserProfileCard from "../../../src/components/UserProfileCard";
 import UserProfileCardEditor from "../../../src/components/UserProfileCardEditor";
-import postsStore from "@/store/modules/posts/store";
-import userStore from "../../../src/store/modules/users/store";
 import usersGetters from "../../../src/store/modules/users/getters";
 import postsGetters from "@/store/modules/posts/getters";
 import mockedSourceData from "../mocks/mockedSourceData";
@@ -16,10 +14,7 @@ localVue.use(Vuex);
 
 describe("PageProfile", () => {
   const store = new Vuex.Store({
-    state: {
-      ...postsStore.state,
-      ...userStore.state
-    },
+    state: { ...mockedSourceData, authId: "VXjpr2WHa8Ux4Bnggym8QFLdv5C3" },
     getters: {
       ...usersGetters,
       ...postsGetters
@@ -29,9 +24,8 @@ describe("PageProfile", () => {
     localVue,
     store
   });
-  store.state.authId = "VXjpr2WHa8Ux4Bnggym8QFLdv5C3";
 
-  test("Shows users information", () => {
+  test("Shows user information", () => {
     expect(wrapper).toMatchSnapshot();
   });
   test("Accepts PostList as a child component", () => {
@@ -47,7 +41,7 @@ describe("PageProfile", () => {
     });
   });
   test("Accepts vuex authUser getter", () => {
-    expect(wrapper.vm.user).toEqual(usersGetters.authUser(userStore.state));
+    expect(wrapper.vm.user).toEqual(usersGetters.authUser(store.state));
   });
   test("Creates userPosts array of certain users", () => {
     const post = mockedSourceData.posts["-KsjnAAjzfpznUVh4DSa"];

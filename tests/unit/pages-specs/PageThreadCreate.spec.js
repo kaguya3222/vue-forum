@@ -1,15 +1,15 @@
 import { createLocalVue, shallowMount } from "@vue/test-utils";
 import PageThreadCreate from "../../../src/pages/PageThreadCreate";
 import ThreadEditor from "../../../src/components/ThreadEditor";
-import rootStore from "@/store/";
 import Vuex from "vuex";
+import mockedSourceData from "../mocks/mockedSourceData";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("PageThreadCreate", function() {
   const store = new Vuex.Store({
-    state: rootStore.state
+    state: { ...mockedSourceData }
   });
   store.dispatch = jest.fn();
   const $router = {

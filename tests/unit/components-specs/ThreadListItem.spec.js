@@ -2,7 +2,6 @@ import { createLocalVue, shallowMount } from "@vue/test-utils";
 import ThreadListItem from "../../../src/components/ThreadListItem";
 import mockedSourceData from "../mocks/mockedSourceData";
 import Vuex from "vuex";
-import sourceStore from "../../../src/store";
 import userGetters from "@/store/modules/users/getters";
 
 const localVue = createLocalVue();
@@ -10,7 +9,7 @@ localVue.use(Vuex);
 
 describe("ThreadListItem", () => {
   const store = new Vuex.Store({
-    state: sourceStore.state,
+    state: { ...mockedSourceData },
     getters: {
       ...userGetters
     }

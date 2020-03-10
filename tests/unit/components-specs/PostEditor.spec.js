@@ -2,14 +2,13 @@ import Vuex from "vuex";
 import { createLocalVue, mount } from "@vue/test-utils";
 import PostEditor from "../../../src/components/PostEditor";
 import mockedSourceData from "../mocks/mockedSourceData";
-import rootStore from "@/store/";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("PostEditor", () => {
   const store = new Vuex.Store({
-    state: rootStore.state
+    state: { ...mockedSourceData }
   });
   const wrapper = mount(PostEditor, {
     localVue,
