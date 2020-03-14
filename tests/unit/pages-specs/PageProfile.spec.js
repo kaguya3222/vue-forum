@@ -7,7 +7,6 @@ import UserProfileCardEditor from "../../../src/components/UserProfileCardEditor
 import usersGetters from "../../../src/store/modules/users/getters";
 import postsGetters from "@/store/modules/posts/getters";
 import mockedSourceData from "../mocks/mockedSourceData";
-import { countObjectProperties } from "../../../src/helpers";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -49,12 +48,5 @@ describe("PageProfile", () => {
       userPost => userPost[".key"] === post[".key"]
     );
     expect(hasPost).toBe(true);
-  });
-  test("Correctly shows users posts number", () => {
-    expect(wrapper.vm.userPostsCount).toBe(wrapper.vm.userPosts.length);
-  });
-  test("Correctly shows users threads number", () => {
-    const userThreadsNumber = countObjectProperties(wrapper.vm.user.threads);
-    expect(wrapper.vm.userThreadsCount).toBe(userThreadsNumber);
   });
 });

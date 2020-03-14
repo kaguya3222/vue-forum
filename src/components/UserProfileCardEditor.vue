@@ -85,26 +85,29 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "UserProfileCardEditor.vue",
   props: {
     user: {
       required: true,
       type: Object
-    },
-    userPostsCount: {
-      required: true,
-      type: Number
-    },
-    userThreadsCount: {
-      required: true,
-      type: Number
     }
   },
   data() {
     return {
       activeUser: { ...this.user }
     };
+  },
+  computed: {
+    ...mapGetters(["countUserPosts", "countUserThreads"]),
+    userPostsCount() {
+      return this.countUserPosts(this.user[".key"]);
+    },
+    userThreadsCount() {
+      return this.countUserThreads(this.user[".key"]);
+    }
   },
   methods: {
     save() {

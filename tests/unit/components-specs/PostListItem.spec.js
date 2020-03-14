@@ -2,7 +2,7 @@ import Vuex from "vuex";
 import { createLocalVue, shallowMount } from "@vue/test-utils";
 import PostListItem from "../../../src/components/PostListItem";
 import mockedSourceData from "../mocks/mockedSourceData";
-import userGetters from "@/store/modules/users/getters";
+import usersGetters from "@/store/modules/users/getters";
 import PostEditor from "../../../src/components/PostEditor";
 
 const localVue = createLocalVue();
@@ -12,7 +12,7 @@ describe("PostListItem", () => {
   const store = new Vuex.Store({
     state: { ...mockedSourceData },
     getters: {
-      ...userGetters
+      ...usersGetters
     }
   });
   const wrapper = shallowMount(PostListItem, {

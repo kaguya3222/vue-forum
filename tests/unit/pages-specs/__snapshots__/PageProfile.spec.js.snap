@@ -2,7 +2,7 @@
 
 exports[`PageProfile Shows user information 1`] = `
 <div class="flex-grid">
-  <user-profile-card-stub user="[object Object]" userpostscount="9" userthreadscount="0"></user-profile-card-stub>
+  <user-profile-card-stub user="[object Object]"></user-profile-card-stub>
   <div class="col-7 push-top">
     <div class="profile-header"><span class="text-lead"> batman's recent activity </span> <a href="#">See only started threads?</a></div>
     <hr>

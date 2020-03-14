@@ -43,7 +43,6 @@
 <script>
 import PostEditor from "./PostEditor";
 
-import { countObjectProperties } from "../helpers";
 import { mapGetters } from "vuex";
 
 export default {
@@ -63,12 +62,12 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["users"]),
+    ...mapGetters(["users", "countUserPosts"]),
     user() {
       return this.users[this.post.userId];
     },
     userPostsCount() {
-      return countObjectProperties(this.user.posts);
+      return this.countUserPosts(this.post.userId);
     }
   }
 };

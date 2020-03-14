@@ -1,7 +1,7 @@
 import { mount, createLocalVue } from "@vue/test-utils";
 import UserProfileCardEditor from "../../../src/components/UserProfileCardEditor";
 import mockedSourceData from "../mocks/mockedSourceData";
-import { countObjectProperties } from "../../../src/helpers";
+import usersGetters from "@/store/modules/users/getters";
 import Vuex from "vuex";
 
 const localVue = createLocalVue();
@@ -9,7 +9,8 @@ localVue.use(Vuex);
 
 describe("UserProfileCardEditor", () => {
   const store = new Vuex.Store({
-    state: { ...mockedSourceData }
+    state: { ...mockedSourceData },
+    getters: { ...usersGetters }
   });
   const $router = {
     push: jest.fn()
@@ -17,9 +18,7 @@ describe("UserProfileCardEditor", () => {
   const user = Object.values(mockedSourceData.users)[0];
   const wrapper = mount(UserProfileCardEditor, {
     propsData: {
-      user,
-      userPostsCount: countObjectProperties(user.posts),
-      userThreadsCount: countObjectProperties(user.threads)
+      user
     },
     mocks: {
       $router
