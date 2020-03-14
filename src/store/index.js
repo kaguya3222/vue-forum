@@ -4,6 +4,7 @@ import sourceData from "@/data.json";
 import forumPosts from "./modules/posts/store";
 import forumUsers from "./modules/users/store";
 import forumThreads from "./modules/threads/store";
+import forumForums from "./modules/forums/store";
 
 Vue.use(Vuex);
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
   modules: {
     forumPosts,
     forumUsers,
-    forumThreads
+    forumThreads,
+    forumForums
   }
 });
