@@ -1,5 +1,5 @@
 import Vue from "vue";
-import { makeAppendChildToParentMutation } from "../../helpers";
+import { makeAppendChildToParentMutation } from "../../vuex-helpers";
 
 export default {
   setPost(state, { post, postId }) {
@@ -8,11 +8,11 @@ export default {
   appendPostToThread: makeAppendChildToParentMutation({
     parents: "threads",
     child: "posts",
-    parentModuleName: "forumThreads"
+    parentsModuleName: "forumThreads"
   }),
   appendPostToUser: makeAppendChildToParentMutation({
     parents: "users",
     child: "posts",
-    parentModuleName: "forumUsers"
+    parentsModuleName: "forumUsers"
   })
 };

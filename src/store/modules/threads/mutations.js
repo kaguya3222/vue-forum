@@ -1,5 +1,5 @@
 import Vue from "vue";
-import { makeAppendChildToParentMutation } from "../../helpers";
+import { makeAppendChildToParentMutation } from "../../vuex-helpers";
 
 export default {
   setThread(state, { thread, threadId }) {
@@ -8,11 +8,11 @@ export default {
   appendThreadToForum: makeAppendChildToParentMutation({
     parents: "forums",
     child: "threads",
-    parentModuleName: "forumForums"
+    parentsModuleName: "forumForums"
   }),
   appendThreadToUser: makeAppendChildToParentMutation({
     parents: "users",
     child: "threads",
-    parentModuleName: "forumUsers"
+    parentsModuleName: "forumUsers"
   })
 };

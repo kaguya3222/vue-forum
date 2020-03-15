@@ -3,9 +3,9 @@ import Vue from "vue";
 const makeAppendChildToParentMutation = ({
   parents,
   child,
-  parentModuleName
+  parentsModuleName
 }) => (state, { childId, parentId, rootState }) => {
-  const resource = rootState[parentModuleName][parents][parentId];
+  const resource = rootState[parentsModuleName][parents][parentId];
   if (!resource[child]) {
     Vue.set(resource, child, {});
   }
