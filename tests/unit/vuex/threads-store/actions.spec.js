@@ -24,15 +24,15 @@ describe("createThread", () => {
   });
   test("Commits appendThreadToForum mutation", () => {
     expect(rootStore.commit).toHaveBeenCalledWith("appendThreadToForum", {
-      forumId,
-      threadId: expect.any(String),
+      parentId: expect.any(String),
+      childId: expect.any(String),
       rootState: rootStore.state
     });
   });
   test("Commits appendThreadToUser mutation", () => {
     expect(rootStore.commit).toHaveBeenCalledWith("appendThreadToUser", {
-      userId: expect.any(String),
-      threadId: expect.any(String),
+      parentId: expect.any(String),
+      childId: expect.any(String),
       rootState: rootStore.state
     });
   });

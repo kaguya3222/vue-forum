@@ -1,21 +1,18 @@
 import Vue from "vue";
+import { makeAppendChildToParentMutation } from "../../helpers";
 
 export default {
   setThread(state, { thread, threadId }) {
     Vue.set(state.threads, threadId, thread);
   },
-  appendThreadToForum(state, { forumId, threadId, rootState }) {
-    const forum = rootState.forums[forumId];
-    if (!forum.threads) {
-      Vue.set(forum, "threads", {});
-    }
-    Vue.set(forum.threads, threadId, threadId);
-  },
-  appendThreadToUser(state, { userId, threadId, rootState }) {
-    const user = rootState.forumUsers.users[userId];
-    if (!user.threads) {
-      Vue.set(user, "threads", {});
-    }
-    Vue.set(user.threads, threadId, threadId);
-  }
+  appendThreadToForum: makeAppendChildToParentMutation({
+    parents: "forums",
+    child: "threads",
+    parentModuleName: "forumForums"
+  }),
+  appendThreadToUser: makeAppendChildToParentMutation({
+    parents: "users",
+    child: "threads",
+    parentModuleName: "forumUsers"
+  })
 };

@@ -11,8 +11,16 @@ export default {
       userId
     };
     commit("setThread", { threadId, thread });
-    commit("appendThreadToForum", { forumId, threadId, rootState });
-    commit("appendThreadToUser", { userId, threadId, rootState });
+    commit("appendThreadToForum", {
+      parentId: forumId,
+      childId: threadId,
+      rootState
+    });
+    commit("appendThreadToUser", {
+      parentId: userId,
+      childId: threadId,
+      rootState
+    });
     dispatch("createPost", {
       post: {
         text,

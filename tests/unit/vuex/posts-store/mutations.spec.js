@@ -20,33 +20,3 @@ describe("setPost", () => {
     expect(postsLengthBeforeSet < postsLengthAfterSet).toBe(true);
   });
 });
-
-describe("appendPostToThread", () => {
-  test("adds post to thread object", () => {
-    const threadId = "-KsjWehQ--apjDBwSBCY";
-    const threadPosts = rootStore.state.forumThreads.threads[threadId].posts;
-    const threadPostsBeforeSet = Object.values(threadPosts).length;
-    mutations.appendPostToThread(rootStore.state.forumPosts, {
-      postId: "greatPost" + Math.random(),
-      threadId,
-      rootState: rootStore.state
-    });
-    const threadPostsAfterSet = Object.values(threadPosts).length;
-    expect(threadPostsBeforeSet < threadPostsAfterSet).toBe(true);
-  });
-});
-
-describe("appendPostToUser", () => {
-  test("adds post to users object", () => {
-    const userId = "jUjmgCurRRdzayqbRMO7aTG9X1G2";
-    const userPosts = rootStore.state.forumUsers.users[userId].posts;
-    const userPostsBeforeSet = Object.values(userPosts).length;
-    mutations.appendPostToUser(rootStore.state.forumPosts, {
-      postId: "greatPost" + Math.random(),
-      userId,
-      rootState: rootStore.state
-    });
-    const userPostsAfterSet = Object.values(userPosts).length;
-    expect(userPostsBeforeSet < userPostsAfterSet).toBe(true);
-  });
-});

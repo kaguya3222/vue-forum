@@ -32,21 +32,17 @@ describe("createPost", () => {
     });
   });
   test("Commits appendPostToThread", () => {
-    const threadId = "-KsjWehQ--apjDBwSBCY";
     expect(rootStore.commit).toHaveBeenCalledWith("appendPostToThread", {
-      postId: expect.any(String),
-      threadId,
+      parentId: expect.any(String),
+      childId: expect.any(String),
       rootState: rootStore.state
     });
   });
   test("Commits appendPostToUser", () => {
-    expect(rootStore.commit).toHaveBeenCalledWith(
-      "appendPostToUser",
-      expect.objectContaining({
-        postId: expect.any(String),
-        userId: expect.any(String),
-        rootState: rootStore.state
-      })
-    );
+    expect(rootStore.commit).toHaveBeenCalledWith("appendPostToUser", {
+      parentId: expect.any(String),
+      childId: expect.any(String),
+      rootState: rootStore.state
+    });
   });
 });

@@ -6,11 +6,15 @@ export default {
     post.publishedAt = Math.floor(Date.now() / 1000);
     commit("setPost", { post, postId });
     commit("appendPostToThread", {
-      postId,
-      threadId: post.threadId,
+      parentId: post.threadId,
+      childId: postId,
       rootState
     });
-    commit("appendPostToUser", { postId, userId: post.userId, rootState });
+    commit("appendPostToUser", {
+      parentId: post.userId,
+      childId: postId,
+      rootState
+    });
     return Promise.resolve(post);
   },
   updatePost({ commit, rootState }, { postId, text }) {
