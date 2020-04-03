@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import { countObjectProperties } from "../helpers";
 import { mapGetters } from "vuex";
 
 export default {
@@ -33,9 +32,9 @@ export default {
   },
   name: "ThreadListItem.vue",
   computed: {
-    ...mapGetters(["users"]),
+    ...mapGetters(["users", "countThreadReplies"]),
     repliesCount() {
-      return countObjectProperties(this.thread.posts) - 1;
+      return this.countThreadReplies(this.thread[".key"]);
     },
     user() {
       return this.users[this.thread.userId];

@@ -6,12 +6,11 @@ exports[`PageThreadShow Shows thread data on thread page 1`] = `
     <div class="thread-details">
       <h1>What kind of pet do you have?</h1>
       <p>
-        By <a href="#" class="link-unstyled">Robin</a>,
-        <app-date-stub unixdate="1504035908"></app-date-stub>.
+        By <a href="#" class="link-unstyled">Rolf</a>, <app-date-stub unixdate="1504035908"></app-date-stub>.
       </p>
     </div>
     <router-link-stub to="[object Object]" tag="button" class="btn-green btn-small">Edit</router-link-stub>
-  </div>
+  </div> <span class="hide-mobile text-faded text-small">3 replies by 3 contributors</span>
   <post-list-stub posts="[object Object],[object Object],[object Object],[object Object]"></post-list-stub>
   <post-editor-stub threadid="-KsjWehQ--apjDBwSBCY"></post-editor-stub>
 </div>

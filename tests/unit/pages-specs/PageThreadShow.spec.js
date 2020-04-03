@@ -6,6 +6,7 @@ import mockedSourceData from "../mocks/mockedSourceData";
 import Vuex from "vuex";
 import postsGetters from "@/store/modules/posts/getters";
 import threadsGetters from "@/store/modules/threads/getters";
+import usersGetters from "@/store/modules/users/getters";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -15,7 +16,8 @@ describe("PageThreadShow", () => {
     state: { ...mockedSourceData },
     getters: {
       ...postsGetters,
-      ...threadsGetters
+      ...threadsGetters,
+      ...usersGetters
     }
   });
   const wrapper = shallowMount(PageThreadShow, {

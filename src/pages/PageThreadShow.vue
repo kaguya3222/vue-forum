@@ -4,8 +4,8 @@
       <div class="thread-details">
         <h1>{{ thread.title }}</h1>
         <p>
-          By <a href="#" class="link-unstyled">Robin</a>,
-          <app-date :unixDate="thread.publishedAt" />.
+          By <a href="#" class="link-unstyled">{{ user.name }}</a
+          >, <app-date :unixDate="thread.publishedAt" />.
         </p>
       </div>
       <router-link
@@ -15,6 +15,10 @@
         >Edit</router-link
       >
     </div>
+
+    <span class="hide-mobile text-faded text-small"
+      >{{ repliesCount }} replies by {{ contributorsCount }} contributors</span
+    >
 
     <post-list :posts="threadPosts" />
 
@@ -39,15 +43,25 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["posts", "threads"]),
+    ...mapGetters(["posts", "threads", "users", "countThreadReplies"]),
+    contributorsCount() {
+      const userIds = this.threadPosts.map(post => post.userId);
+      return [...new Set(userIds)].length - 1;
+    },
     threadPosts() {
       const postsIds = Object.values(this.thread.posts);
       return Object.values(this.posts).filter(post =>
         postsIds.includes(post[".key"])
       );
     },
+    repliesCount() {
+      return this.countThreadReplies(this.thread[".key"]);
+    },
     thread() {
       return this.threads[this.threadId];
+    },
+    user() {
+      return this.users[this.thread.userId];
     }
   }
 };

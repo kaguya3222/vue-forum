@@ -8,6 +8,7 @@
       </a>
 
       <p class="desktop-only text-small">{{ userPostsCount }} posts</p>
+      <p class="desktop-only text-small">{{ userThreadsCount }} threads</p>
     </div>
 
     <div class="post-content">
@@ -62,12 +63,15 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["users", "countUserPosts"]),
+    ...mapGetters(["users", "countUserPosts", "countUserThreads"]),
     user() {
       return this.users[this.post.userId];
     },
     userPostsCount() {
       return this.countUserPosts(this.post.userId);
+    },
+    userThreadsCount() {
+      return this.countUserThreads(this.user[".key"]);
     }
   }
 };
