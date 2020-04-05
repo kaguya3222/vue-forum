@@ -1,5 +1,5 @@
 <template>
-  <div class="col-large push-top">
+  <div v-if="thread && user" class="col-large push-top">
     <div class="thread-header">
       <div class="thread-details">
         <h1>{{ thread.title }}</h1>
@@ -29,7 +29,7 @@
 <script>
 import PostList from "../components/PostList";
 import PostEditor from "../components/PostEditor";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   components: {
@@ -43,7 +43,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["posts", "threads", "users", "countThreadReplies"]),
+    ...mapGetters({
+      posts: "posts/items",
+      threads: "threads/items",
+      users: "users/items",
+      countThreadReplies: "threads/countThreadReplies"
+    }),
     contributorsCount() {
       const userIds = this.threadPosts.map(post => post.userId);
       return [...new Set(userIds)].length - 1;
@@ -63,6 +68,21 @@ export default {
     user() {
       return this.users[this.thread.userId];
     }
+  },
+  methods: {
+    ...mapActions("threads", ["fetchThread"]),
+    ...mapActions("users", ["fetchUser"]),
+    ...mapActions("posts", ["fetchPosts"])
+  },
+  created() {
+    this.fetchThread({ id: this.threadId }).then(thread => {
+      this.fetchUser({ id: thread.userId });
+      this.fetchPosts({ ids: Object.keys(thread.posts) }).then(posts => {
+        posts.forEach(post => {
+          this.fetchUser({ id: post.userId });
+        });
+      });
+    });
   }
 };
 </script>

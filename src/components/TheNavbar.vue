@@ -1,5 +1,5 @@
 <template>
-  <header class="header" id="header">
+  <header v-if="authUser" class="header" id="header">
     <router-link :to="{ name: 'Home' }" class="logo">
       <img src="../assets/img/svg/vueschool-logo.svg" />
     </router-link>
@@ -69,7 +69,9 @@ import { mapGetters } from "vuex";
 export default {
   name: "TheNavbar.vue",
   computed: {
-    ...mapGetters(["authUser"])
+    ...mapGetters({
+      authUser: "users/authUser"
+    })
   }
 };
 </script>

@@ -1,7 +1,7 @@
 import { countObjectProperties } from "../../../helpers";
 
 export default {
-  threads: state => state.threads,
+  items: state => state.items,
   countThreadReplies: state => id =>
-    countObjectProperties(state.threads[id].posts) - 1
+    countObjectProperties(state.items[id].posts) - 1
 };

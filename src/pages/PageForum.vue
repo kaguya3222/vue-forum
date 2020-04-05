@@ -1,5 +1,5 @@
 <template>
-  <div class="forum-wrapper">
+  <div v-if="forum" class="forum-wrapper">
     <div class="col-full push-top">
       <div class="forum-header">
         <div class="forum-details">
@@ -25,7 +25,7 @@
 
 <script>
 import ThreadList from "../components/ThreadList";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "PageForum",
@@ -39,15 +39,30 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["threads"]),
+    ...mapGetters({
+      threads: "threads/items",
+      forums: "forums/items"
+    }),
     forum() {
-      return this.$store.state.forums[this.id];
+      return this.forums[this.id];
     },
     forumThreads() {
       return Object.values(this.threads).filter(
         thread => thread.forumId === this.id
       );
     }
+  },
+  methods: {
+    ...mapActions("forums", ["fetchForum"]),
+    ...mapActions("threads", ["fetchThreads"]),
+    ...mapActions("users", ["fetchUser"])
+  },
+  created() {
+    this.fetchForum({ id: this.id }).then(forum => {
+      this.fetchThreads({ ids: forum.threads }).then(threads => {
+        threads.forEach(thread => this.fetchUser({ id: thread.userId }));
+      });
+    });
   }
 };
 </script>

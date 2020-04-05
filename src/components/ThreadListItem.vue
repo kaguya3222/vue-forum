@@ -1,5 +1,5 @@
 <template>
-  <div class="thread">
+  <div v-if="thread && user" class="thread">
     <div>
       <p>
         <router-link
@@ -32,7 +32,10 @@ export default {
   },
   name: "ThreadListItem.vue",
   computed: {
-    ...mapGetters(["users", "countThreadReplies"]),
+    ...mapGetters({
+      users: "users/items",
+      countThreadReplies: "threads/countThreadReplies"
+    }),
     repliesCount() {
       return this.countThreadReplies(this.thread[".key"]);
     },

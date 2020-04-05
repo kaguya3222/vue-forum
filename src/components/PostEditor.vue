@@ -59,14 +59,14 @@ export default {
         threadId: this.threadId
       };
       this.newPostText = "";
-      return this.$store.dispatch("createPost", { post });
+      return this.$store.dispatch("posts/createPost", { post });
     },
     updatePost() {
       const payload = {
         postId: this.post[".key"],
         text: this.newPostText
       };
-      return this.$store.dispatch("updatePost", payload);
+      return this.$store.dispatch("posts/updatePost", payload);
     },
     cancel() {
       this.$emit("cancel");

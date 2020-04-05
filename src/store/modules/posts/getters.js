@@ -1,5 +1,5 @@
 export default {
-  posts(state) {
-    return state.posts;
+  items(state) {
+    return state.items;
   }
 };

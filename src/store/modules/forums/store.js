@@ -1,10 +1,12 @@
-import sourceData from "@/data.json";
+import actions from "./actions";
 
 export default {
+  namespaced: true,
   state: {
-    forums: sourceData.forums
+    items: {}
   },
-  getters: {},
-  mutations: {},
-  actions: {}
+  getters: {
+    items: state => state.items
+  },
+  actions
 };

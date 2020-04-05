@@ -35,8 +35,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      user: "authUser",
-      posts: "posts"
+      user: "users/authUser",
+      posts: "posts/items"
     }),
     userPosts() {
       if (this.user.posts) {

@@ -9,9 +9,15 @@
 
 <script>
 import TheNavbar from "./components/TheNavbar";
+
 export default {
   components: {
     "nav-bar": TheNavbar
+  },
+  beforeCreate() {
+    this.$store.dispatch("users/fetchUser", {
+      id: this.$store.state.users.authId
+    });
   }
 };
 </script>

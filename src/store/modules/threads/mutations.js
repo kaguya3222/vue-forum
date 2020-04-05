@@ -3,16 +3,19 @@ import { makeAppendChildToParentMutation } from "../../vuex-helpers";
 
 export default {
   setThread(state, { thread, threadId }) {
-    Vue.set(state.threads, threadId, thread);
+    console.log("worked");
+    Vue.set(state.items, threadId, thread);
   },
   appendThreadToForum: makeAppendChildToParentMutation({
     parents: "forums",
-    child: "threads",
-    parentsModuleName: "forumForums"
+    child: "threads"
   }),
   appendThreadToUser: makeAppendChildToParentMutation({
     parents: "users",
-    child: "threads",
-    parentsModuleName: "forumUsers"
+    child: "threads"
+  }),
+  appendContributorToThread: makeAppendChildToParentMutation({
+    parent: "threads",
+    child: "contributors"
   })
 };

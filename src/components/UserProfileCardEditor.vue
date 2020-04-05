@@ -101,7 +101,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["countUserPosts", "countUserThreads"]),
+    ...mapGetters({
+      countUserPosts: "users/countUserPosts",
+      countUserThreads: "users/countUserThreads"
+    }),
     userPostsCount() {
       return this.countUserPosts(this.user[".key"]);
     },

@@ -1,25 +1,31 @@
 <template>
   <div class="col-full">
     <h1>Welcome to the forum</h1>
-    <category-list :categories="categories" />
+    <category-list :categories="Object.values(categories)" />
   </div>
 </template>
 
 <script>
 import CategoryList from "../components/CategoryList";
+import { mapGetters } from "vuex";
 
 export default {
-  data() {
-    return {
-      threads: this.$store.state.threads,
-      posts: this.$store.state.posts,
-      users: this.$store.state.users,
-      forums: this.$store.state.forums,
-      categories: Object.values(this.$store.state.categories)
-    };
-  },
   components: {
     "category-list": CategoryList
+  },
+  computed: {
+    ...mapGetters({
+      categories: "categories/items"
+    })
+  },
+  beforeCreate() {
+    this.$store.dispatch("categories/fetchAllCategories").then(categories => {
+      categories.forEach(category =>
+        this.$store.dispatch("forums/fetchForums", {
+          ids: Object.keys(category.forums)
+        })
+      );
+    });
   }
 };
 </script>

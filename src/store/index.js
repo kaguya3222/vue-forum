@@ -1,24 +1,25 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import sourceData from "@/data.json";
-import forumPosts from "./modules/posts/store";
-import forumUsers from "./modules/users/store";
-import forumThreads from "./modules/threads/store";
-import forumForums from "./modules/forums/store";
+import posts from "./modules/posts/store";
+import users from "./modules/users/store";
+import threads from "./modules/threads/store";
+import forums from "./modules/forums/store";
+import categories from "./modules/categories/store";
+import actions from "./actions";
+import mutations from "./mutations";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    ...sourceData
-  },
+  state: {},
   getters: {},
-  mutations: {},
-  actions: {},
+  mutations,
+  actions,
   modules: {
-    forumPosts,
-    forumUsers,
-    forumThreads,
-    forumForums
+    posts,
+    users,
+    threads,
+    forums,
+    categories
   }
 });

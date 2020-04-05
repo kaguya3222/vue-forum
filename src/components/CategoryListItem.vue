@@ -11,6 +11,8 @@
 
 <script>
 import ForumList from "./ForumList";
+import { mapGetters } from "vuex";
+
 export default {
   name: "CategoryListItem.vue",
   components: { "forum-list": ForumList },
@@ -21,8 +23,11 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      forums: "forums/items"
+    }),
     categoryForums() {
-      return Object.values(this.$store.state.forums).filter(
+      return Object.values(this.forums).filter(
         forum => forum.categoryId === this.category[".key"]
       );
     }

@@ -1,11 +1,11 @@
 import mutations from "./mutations";
-import sourceData from "@/data.json";
 import actions from "./actions";
 import getters from "./getters";
 
 export default {
+  namespaced: true,
   state: {
-    posts: sourceData.posts
+    items: {}
   },
   getters: {
     ...getters

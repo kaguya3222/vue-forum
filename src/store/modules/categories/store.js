@@ -7,9 +7,7 @@ export default {
   state: {
     items: {}
   },
-  getters: {
-    ...getters
-  },
-  actions,
-  mutations
+  getters,
+  mutations,
+  actions
 };

@@ -1,5 +1,5 @@
 <template>
-  <div class="col-full push-top">
+  <div v-if="thread && text" class="col-full push-top">
     <h1>
       Editing <i>{{ thread.title }}</i>
     </h1>
@@ -15,7 +15,8 @@
 
 <script>
 import ThreadEditor from "../components/ThreadEditor";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "PageThreadEdit",
   components: { "thread-editor": ThreadEditor },
@@ -26,17 +27,23 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["threads", "posts"]),
+    ...mapGetters({
+      threads: "threads/items",
+      posts: "posts/items"
+    }),
     thread() {
       return this.threads[this.threadId];
     },
     text() {
-      return this.posts[this.thread.firstPostId].text;
+      const post = this.posts[this.thread.firstPostId];
+      return post ? post.text : null;
     }
   },
   methods: {
+    ...mapActions("threads", ["fetchThread"]),
+    ...mapActions("posts", ["fetchPost"]),
     async save({ title, text }) {
-      const threadId = await this.$store.dispatch("updateThread", {
+      const threadId = await this.$store.dispatch("threads/updateThread", {
         threadId: this.threadId,
         title,
         text
@@ -52,6 +59,11 @@ export default {
         params: { threadId: this.threadId }
       });
     }
+  },
+  created() {
+    this.fetchThread({ id: this.threadId }).then(thread => {
+      this.fetchPost({ id: thread.firstPostId });
+    });
   }
 };
 </script>
