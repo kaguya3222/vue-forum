@@ -11,7 +11,8 @@ export default {
         .database()
         .ref(resource)
         .child(id)
-        .once("value", snapshot => {
+        .once("value", () => {})
+        .then(snapshot => {
           commit("setItem", {
             resource,
             id: snapshot.key,

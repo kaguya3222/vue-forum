@@ -7,12 +7,10 @@ export default {
   },
   appendPostToThread: makeAppendChildToParentMutation({
     parents: "threads",
-    child: "posts",
-    parentsModuleName: "forumThreads"
+    child: "posts"
   }),
   appendPostToUser: makeAppendChildToParentMutation({
     parents: "users",
-    child: "posts",
-    parentsModuleName: "forumUsers"
+    child: "posts"
   })
 };

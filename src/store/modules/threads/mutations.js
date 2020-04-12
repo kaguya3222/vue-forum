@@ -3,7 +3,6 @@ import { makeAppendChildToParentMutation } from "../../vuex-helpers";
 
 export default {
   setThread(state, { thread, threadId }) {
-    console.log("worked");
     Vue.set(state.items, threadId, thread);
   },
   appendThreadToForum: makeAppendChildToParentMutation({
