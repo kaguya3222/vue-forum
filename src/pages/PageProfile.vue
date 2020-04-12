@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-grid">
+  <div v-if="user && posts" class="flex-grid">
     <user-profile-card v-if="!edit" :user="user" />
     <user-profile-card-editor v-else :user="user" />
     <div class="col-7 push-top">
@@ -36,15 +36,26 @@ export default {
   computed: {
     ...mapGetters({
       user: "users/authUser",
-      posts: "posts/items"
+      posts: "posts/items",
+      testUserPosts: "users/userPosts"
     }),
     userPosts() {
-      if (this.user.posts) {
-        return Object.values(this.posts).filter(
-          post => post.userId === this.user[".key"]
-        );
-      } else {
-        return [];
+      return this.user.posts
+        ? Object.values(this.posts).filter(
+            post => post.userId === this.user[".key"]
+          )
+        : [];
+    }
+  },
+  watch: {
+    user: {
+      immediate: true,
+      handler(value) {
+        if (value) {
+          this.$store.dispatch("posts/fetchPosts", {
+            ids: Object.keys(value.posts)
+          });
+        }
       }
     }
   }

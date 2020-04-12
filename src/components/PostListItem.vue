@@ -43,7 +43,6 @@
 
 <script>
 import PostEditor from "./PostEditor";
-
 import { mapGetters } from "vuex";
 
 export default {

@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 export default {
   name: "PostEditor.vue",
   props: {
@@ -40,10 +39,6 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({
-      user: "authUser",
-      threads: "threads"
-    }),
     isUpdate() {
       return !!this.post;
     }

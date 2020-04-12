@@ -35,9 +35,6 @@ export default {
   created() {
     this.fetchCategory({ id: this.id }).then(category => {
       this.fetchForums({ ids: category.forums });
-      this.$store.dispatch("forums/fetchForums", {
-        ids: category.forums
-      });
     });
   }
 };
