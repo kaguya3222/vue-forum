@@ -23,7 +23,7 @@ export default {
     updates[`posts/${postId}`] = post;
     updates[`threads/${post.threadId}/posts/${postId}`] = postId;
     updates[`users/${post.userId}/posts/${postId}`] = postId;
-    firebase
+    return firebase
       .database()
       .ref()
       .update(updates)
@@ -58,7 +58,6 @@ export default {
       .ref("posts")
       .child(postId)
       .update(updates);
-
     commit("setPost", {
       postId,
       post: {
