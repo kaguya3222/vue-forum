@@ -5,9 +5,9 @@ const rootStore = { ...mockedRootStore };
 
 describe("setPost", () => {
   test("adds post to posts object", () => {
-    const posts = rootStore.state.forumPosts.posts;
+    const posts = rootStore.state.posts.items;
     const postsLengthBeforeSet = Object.values(posts).length;
-    mutations.setPost(rootStore.state.forumPosts, {
+    mutations.setPost(rootStore.state.posts, {
       post: {
         text: "Hello guys",
         publishedAt: Math.floor(Date.now() / 1000),

@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`AppDate Shows date in right format 1`] = `
-<span title="March 5th 52111, 8:41:30 am">
-  in 50091 years
-</span>
-`;

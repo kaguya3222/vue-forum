@@ -1,23 +1,29 @@
 import Vuex from "vuex";
 import { createLocalVue, shallowMount } from "@vue/test-utils";
 import PostListItem from "../../../src/components/PostListItem";
-import mockedSourceData from "../mocks/mockedSourceData";
 import usersGetters from "@/store/modules/users/getters";
 import PostEditor from "../../../src/components/PostEditor";
+import mockedRootStore from "../mocks/mockedRootStore";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
+const rootState = mockedRootStore.state;
+
 describe("PostListItem", () => {
   const store = new Vuex.Store({
-    state: { ...mockedSourceData },
-    getters: {
-      ...usersGetters
+    modules: {
+      users: {
+        namespaced: true,
+        state: rootState.users,
+        getters: usersGetters
+      }
     }
   });
+  const posts = mockedRootStore.state.posts.items;
   const wrapper = shallowMount(PostListItem, {
     propsData: {
-      post: mockedSourceData.posts["-KsjWehQ--apjDBwSBCZ"]
+      post: posts["-KsjWehQ--apjDBwSBCZ"]
     },
     stubs: {
       "app-date": true

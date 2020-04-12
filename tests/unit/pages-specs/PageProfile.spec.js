@@ -4,26 +4,44 @@ import PageProfile from "../../../src/pages/PageProfile";
 import PostList from "../../../src/components/PostList";
 import UserProfileCard from "../../../src/components/UserProfileCard";
 import UserProfileCardEditor from "../../../src/components/UserProfileCardEditor";
-import usersGetters from "../../../src/store/modules/users/getters";
-import postsGetters from "@/store/modules/posts/getters";
-import mockedSourceData from "../mocks/mockedSourceData";
+import usersStore from "@/store/modules/users/store";
+import postsStore from "@/store/modules/posts/store";
+import mockedRootStore from "../mocks/mockedRootStore";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
+const rootState = mockedRootStore.state;
+
 describe("PageProfile", () => {
+  const postActions = {
+    fetchPosts: jest.fn()
+  };
   const store = new Vuex.Store({
-    state: { ...mockedSourceData, authId: "VXjpr2WHa8Ux4Bnggym8QFLdv5C3" },
-    getters: {
-      ...usersGetters,
-      ...postsGetters
+    modules: {
+      posts: {
+        namespaced: true,
+        state: rootState.posts,
+        getters: postsStore.getters,
+        actions: postActions
+      },
+      users: {
+        namespaced: true,
+        state: rootState.users,
+        getters: usersStore.getters
+      }
     }
   });
+  store.dispatch = jest.fn();
   const wrapper = shallowMount(PageProfile, {
     localVue,
     store
   });
-
+  test("Dispatches fetchPosts action when user data is loaded", () => {
+    expect(store.dispatch).toHaveBeenCalledWith("posts/fetchPosts", {
+      ids: expect.any(Array)
+    });
+  });
   test("Shows user information", () => {
     expect(wrapper).toMatchSnapshot();
   });
@@ -40,10 +58,13 @@ describe("PageProfile", () => {
     });
   });
   test("Accepts vuex authUser getter", () => {
-    expect(wrapper.vm.user).toEqual(usersGetters.authUser(store.state));
+    expect(wrapper.vm.user).toEqual(
+      usersStore.getters.authUser(rootState.users)
+    );
   });
   test("Creates userPosts array of certain users", () => {
-    const post = mockedSourceData.posts["-KsjnAAjzfpznUVh4DSa"];
+    const posts = store.state.posts.items;
+    const post = posts["-Kvd3TvfJogbWreitADe"];
     const hasPost = wrapper.vm.userPosts.some(
       userPost => userPost[".key"] === post[".key"]
     );

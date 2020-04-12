@@ -2,14 +2,14 @@ import mockedSourceData from "./mockedSourceData";
 
 export default {
   state: {
-    forumCategories: { categories: { ...mockedSourceData.categories } },
-    forumForums: { forums: { ...mockedSourceData.forums } },
-    forumModerators: { moderators: { ...mockedSourceData.moderators } },
-    forumPosts: { posts: { ...mockedSourceData.posts } },
-    forumStats: { stats: { ...mockedSourceData.stats } },
-    forumThreads: { threads: { ...mockedSourceData.threads } },
-    forumUsers: {
-      users: { ...mockedSourceData.users },
+    categories: { items: { ...mockedSourceData.categories } },
+    forums: { items: { ...mockedSourceData.forums } },
+    moderators: { items: { ...mockedSourceData.moderators } },
+    posts: { items: { ...mockedSourceData.posts } },
+    stats: { items: { ...mockedSourceData.stats } },
+    threads: { items: { ...mockedSourceData.threads } },
+    users: {
+      items: { ...mockedSourceData.users },
       authId: "7uVPJS9GHoftN58Z2MXCYDqmNAh2"
     }
   },

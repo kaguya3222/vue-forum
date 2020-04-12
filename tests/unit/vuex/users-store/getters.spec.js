@@ -13,11 +13,50 @@ describe("authUser", () => {
       usernameLower: "chrisvfritz",
       ".key": "38St7Q8Zi2N1SPa5ahzssq9kbyp1"
     };
-    mockedRootStore.state.forumUsers.authId = user[".key"];
-    mockedRootStore.state.forumUsers.users[
-      "38St7Q8Zi2N1SPa5ahzssq9kbyp1"
-    ] = user;
-    const authUser = getters.authUser(mockedRootStore.state.forumUsers);
+    mockedRootStore.state.users.authId = user[".key"];
+    mockedRootStore.state.users.items["38St7Q8Zi2N1SPa5ahzssq9kbyp1"] = user;
+    const authUser = getters.authUser(mockedRootStore.state.users);
     expect(authUser).toEqual(user);
+  });
+});
+
+describe("userPosts", () => {
+  test("returns user posts array", () => {
+    const usersModuleState = mockedRootStore.state.users;
+    const users = usersModuleState.items;
+    const rootState = mockedRootStore.state;
+    const userPosts = getters.userPosts(usersModuleState, {}, rootState);
+    const userId = "7uVPJS9GHoftN58Z2MXCYDqmNAh2";
+
+    expect(userPosts(userId).length).toBe(
+      Object.values(users[userId].posts).length
+    );
+  });
+});
+
+describe("'count' getters", () => {
+  const userId = "7uVPJS9GHoftN58Z2MXCYDqmNAh2";
+  const user = mockedRootStore.state.users.items[userId];
+
+  describe("countUserPosts", () => {
+    test("counts user posts", () => {
+      const countUserPosts = getters.countUserPosts(
+        mockedRootStore.state.users
+      );
+      expect(countUserPosts("7uVPJS9GHoftN58Z2MXCYDqmNAh2")).toBe(
+        Object.values(user.posts).length
+      );
+    });
+  });
+
+  describe("countUserThreads", () => {
+    test("counts user threads", () => {
+      const countUserThreads = getters.countUserThreads(
+        mockedRootStore.state.users
+      );
+      expect(countUserThreads("7uVPJS9GHoftN58Z2MXCYDqmNAh2")).toBe(
+        Object.values(user.threads).length
+      );
+    });
   });
 });

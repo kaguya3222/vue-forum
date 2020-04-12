@@ -5,9 +5,10 @@ describe("AppDate", () => {
   test("Shows date in right format", () => {
     const wrapper = mount(AppDate, {
       propsData: {
-        unixDate: 1582302580890
+        unixDate: 1586624478
       }
     });
-    expect(wrapper).toMatchSnapshot();
+    const dateTitle = wrapper.find("span").element.innerHTML;
+    expect(dateTitle.trim() !== "Invalid date").toBe(true);
   });
 });

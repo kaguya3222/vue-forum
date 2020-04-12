@@ -1,5 +1,8 @@
 import threadsActions from "@/store/modules/threads/actions";
 import mockedRootStore from "../../mocks/mockedRootStore";
+import { mockFirebase } from "../../mocks/firebase";
+
+mockFirebase();
 
 const rootStore = { ...mockedRootStore };
 
@@ -10,17 +13,23 @@ describe("createThread", () => {
   const text = "Hello guys!";
   const title = "Thread title";
   const forumId = "-KpOx5Y4AqRr3sB4Ybwj";
+
   beforeEach(() => {
     threadsActions.createThread(
       { ...rootStore, rootState: rootStore.state },
       { text, title, forumId }
     );
   });
-  test("Commits setThread mutation", () => {
-    expect(rootStore.commit).toHaveBeenCalledWith("setThread", {
-      threadId: expect.any(String),
-      thread: expect.any(Object)
-    });
+  test("Commits setItem mutation", () => {
+    expect(rootStore.commit).toHaveBeenCalledWith(
+      "setItem",
+      {
+        resource: "threads",
+        id: expect.any(String),
+        item: expect.any(Object)
+      },
+      { root: true }
+    );
   });
   test("Commits appendThreadToForum mutation", () => {
     expect(rootStore.commit).toHaveBeenCalledWith("appendThreadToForum", {
@@ -37,12 +46,13 @@ describe("createThread", () => {
     });
   });
   test("Dispatches createPost action", () => {
-    expect(rootStore.dispatch).toHaveBeenCalledWith("createPost", {
-      post: {
-        text,
-        threadId: expect.any(String)
-      }
-    });
+    expect(rootStore.dispatch).toHaveBeenCalledWith(
+      "posts/createPost",
+      {
+        post: expect.any(Object)
+      },
+      { root: true }
+    );
   });
 });
 
@@ -65,10 +75,14 @@ describe("updateThread", () => {
       threadId
     });
   });
-  test("Dispatches updatePost", () => {
-    expect(rootStore.dispatch).toHaveBeenCalledWith("updatePost", {
-      postId: expect.any(String),
-      text: expect.any(String)
-    });
+  test("commits setPost", () => {
+    expect(rootStore.commit).toHaveBeenCalledWith(
+      "posts/setPost",
+      {
+        postId: expect.any(String),
+        post: expect.any(Object)
+      },
+      { root: true }
+    );
   });
 });

@@ -1,21 +1,28 @@
 import { mount, createLocalVue } from "@vue/test-utils";
 import UserProfileCardEditor from "../../../src/components/UserProfileCardEditor";
-import mockedSourceData from "../mocks/mockedSourceData";
 import usersGetters from "@/store/modules/users/getters";
 import Vuex from "vuex";
+import mockedRootStore from "../mocks/mockedRootStore";
 
 const localVue = createLocalVue();
+const state = mockedRootStore.state;
 localVue.use(Vuex);
 
 describe("UserProfileCardEditor", () => {
   const store = new Vuex.Store({
-    state: { ...mockedSourceData },
-    getters: { ...usersGetters }
+    modules: {
+      users: {
+        state: { ...state.users },
+        namespaced: true,
+        getters: { ...usersGetters }
+      }
+    }
   });
   const $router = {
     push: jest.fn()
   };
-  const user = Object.values(mockedSourceData.users)[0];
+  const users = mockedRootStore.state.users.items;
+  const user = Object.values(users)[0];
   const wrapper = mount(UserProfileCardEditor, {
     propsData: {
       user

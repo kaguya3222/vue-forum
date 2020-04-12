@@ -2,16 +2,35 @@ import { createLocalVue, shallowMount } from "@vue/test-utils";
 import PageThreadCreate from "../../../src/pages/PageThreadCreate";
 import ThreadEditor from "../../../src/components/ThreadEditor";
 import Vuex from "vuex";
-import mockedSourceData from "../mocks/mockedSourceData";
+import mockedRootStore from "../mocks/mockedRootStore";
+import forumsStore from "@/store/modules/forums/store";
+
+const rootState = mockedRootStore.state;
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("PageThreadCreate", function() {
+  const forumActions = {
+    fetchForum: jest.fn().mockResolvedValue({ threads: [] })
+  };
+  const threadActions = {
+    createThread: jest.fn().mockResolvedValue({ ".key": "threadId" })
+  };
   const store = new Vuex.Store({
-    state: { ...mockedSourceData }
+    modules: {
+      forums: {
+        namespaced: true,
+        state: rootState.forums,
+        getters: forumsStore.getters,
+        actions: forumActions
+      },
+      threads: {
+        namespaced: true,
+        actions: threadActions
+      }
+    }
   });
-  store.dispatch = jest.fn();
   const $router = {
     push: jest.fn()
   };
@@ -37,11 +56,7 @@ describe("PageThreadCreate", function() {
       wrapper.vm.$emit("save", { text: "", title: "" });
     });
     test("Dispatches 'createThread' when 'save' event is emitted", () => {
-      expect(store.dispatch).toHaveBeenCalledWith("createThread", {
-        forumId: wrapper.vm.forum[".key"],
-        title: expect.any(String),
-        text: expect.any(String)
-      });
+      expect(threadActions.createThread).toHaveBeenCalled();
     });
     test("Redirects user to 'ThreadShow' route after form is submitted", () => {
       expect($router.push).toHaveBeenCalledWith({

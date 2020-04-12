@@ -1,20 +1,39 @@
 import { createLocalVue, shallowMount } from "@vue/test-utils";
 import PageThreadEdit from "../../../src/pages/PageThreadEdit";
 import ThreadEditor from "../../../src/components/ThreadEditor";
-import threadGetters from "@/store/modules/threads/getters";
-import postsGetters from "@/store/modules/posts/getters";
 import Vuex from "vuex";
-import mockedSourceData from "../mocks/mockedSourceData";
+import threadsStore from "@/store/modules/threads/store";
+import postsStore from "@/store/modules/posts/store";
+import mockedRootStore from "../mocks/mockedRootStore";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
+const rootState = mockedRootStore.state;
+
 describe("PageThreadEdit", () => {
+  const theadActions = {
+    fetchThread: jest
+      .fn()
+      .mockResolvedValue({ firstPostId: "thread's firstPostId" })
+  };
+  const postActions = {
+    fetchPost: jest.fn()
+  };
   const store = new Vuex.Store({
-    state: { ...mockedSourceData },
-    getters: {
-      ...threadGetters,
-      ...postsGetters
+    modules: {
+      threads: {
+        namespaced: true,
+        state: rootState.threads,
+        getters: threadsStore.getters,
+        actions: theadActions
+      },
+      posts: {
+        namespaced: true,
+        state: rootState.posts,
+        getters: postsStore.getters,
+        actions: postActions
+      }
     }
   });
   const $router = {
@@ -31,6 +50,9 @@ describe("PageThreadEdit", () => {
     store
   });
   store.dispatch = jest.fn();
+  test("Calls fetchThread action when created", () => {
+    expect(theadActions.fetchThread).toHaveBeenCalled();
+  });
   test("Correctly shows thread edition page", () => {
     expect(wrapper).toMatchSnapshot();
   });
@@ -43,7 +65,7 @@ describe("PageThreadEdit", () => {
       wrapper.vm.$emit("save", { text: "", title: "" });
     });
     test("Dispatches 'updateThread' when 'save' event is emitted", () => {
-      expect(store.dispatch).toHaveBeenCalledWith("updateThread", {
+      expect(store.dispatch).toHaveBeenCalledWith("threads/updateThread", {
         threadId: wrapper.vm.threadId,
         title: expect.any(String),
         text: expect.any(String)

@@ -1,9 +1,11 @@
 import actions from "../../../../src/store/modules/posts/actions";
 import mockedRootStore from "../../mocks/mockedRootStore";
+import { mockFirebase } from "../../mocks/firebase";
 
 const rootStore = { ...mockedRootStore };
-
 rootStore.commit = jest.fn();
+
+mockFirebase();
 
 describe("createPost", () => {
   const post = {
@@ -14,22 +16,11 @@ describe("createPost", () => {
     actions.createPost(
       {
         commit: rootStore.commit,
+        state: rootStore.state.posts,
         rootState: rootStore.state
       },
       { post }
     );
-  });
-  test("Commits setPost mutation", () => {
-    expect(rootStore.commit).toHaveBeenCalledWith("setPost", {
-      post: expect.objectContaining({
-        ".key": expect.any(String),
-        publishedAt: expect.any(Number),
-        text: post.text,
-        threadId: post.threadId,
-        userId: expect.any(String)
-      }),
-      postId: expect.any(String)
-    });
   });
   test("Commits appendPostToThread", () => {
     expect(rootStore.commit).toHaveBeenCalledWith("appendPostToThread", {
@@ -43,6 +34,27 @@ describe("createPost", () => {
       parentId: expect.any(String),
       childId: expect.any(String),
       rootState: rootStore.state
+    });
+  });
+});
+
+describe("updatePost", () => {
+  let postId = "postId";
+  let text = "post text";
+
+  beforeEach(() => {
+    actions.updatePost(
+      {
+        commit: rootStore.commit,
+        rootState: rootStore.state
+      },
+      { postId, text }
+    );
+  });
+  test("commits setPost mutation", () => {
+    expect(rootStore.commit).toHaveBeenCalledWith("setPost", {
+      postId,
+      post: expect.any(Object)
     });
   });
 });

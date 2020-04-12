@@ -2,22 +2,49 @@ import Vuex from "vuex";
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import PageCategory from "../../../src/pages/PageCategory";
 import CategoryListItem from "../../../src/components/CategoryListItem";
-import mockedSourceData from "../mocks/mockedSourceData";
+import mockedRootStore from "../mocks/mockedRootStore";
+import categoriesStore from "@/store/modules/categories/store";
+import forumsStore from "@/store/modules/forums/store";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
+const rootState = mockedRootStore.state;
+
 describe("PageCategory", () => {
+  const categoryActions = {
+    fetchCategory: jest.fn().mockResolvedValue([])
+  };
+  const forumActions = { fetchForums: jest.fn() };
   const store = new Vuex.Store({
-    state: { ...mockedSourceData },
-    getters: {}
+    modules: {
+      categories: {
+        namespaced: true,
+        state: rootState.categories,
+        getters: categoriesStore.getters,
+        actions: categoryActions
+      },
+      forums: {
+        namespaced: true,
+        state: rootState.forums,
+        getters: forumsStore.getters,
+        actions: forumActions
+      }
+    }
   });
+  const categories = store.state.categories.items;
   const wrapper = shallowMount(PageCategory, {
     propsData: {
-      id: Object.values(mockedSourceData.categories)[0][".key"]
+      id: Object.values(categories)[0][".key"]
     },
     localVue,
     store
+  });
+  test("Calls fetchCategory action when created", () => {
+    expect(categoryActions.fetchCategory).toHaveBeenCalled();
+  });
+  test("Calls fetchForums action when created", () => {
+    expect(forumActions.fetchForums).toHaveBeenCalled();
   });
   test("Shows category data on category page", () => {
     expect(wrapper).toMatchSnapshot();
