@@ -1,5 +1,5 @@
 <template>
-  <div v-if="thread && user" class="col-large push-top">
+  <div v-if="asyncDataStatus_ready" class="col-large push-top">
     <div class="thread-header">
       <div class="thread-details">
         <h1>{{ thread.title }}</h1>
@@ -30,12 +30,14 @@
 import PostList from "../components/PostList";
 import PostEditor from "../components/PostEditor";
 import { mapGetters, mapActions } from "vuex";
+import asyncDataStatus from "../mixins/asyncDataStatus";
 
 export default {
   components: {
     "post-list": PostList,
     "post-editor": PostEditor
   },
+  mixins: [asyncDataStatus],
   props: {
     threadId: {
       required: true,
@@ -75,14 +77,21 @@ export default {
     ...mapActions("posts", ["fetchPosts"])
   },
   created() {
-    this.fetchThread({ id: this.threadId }).then(thread => {
-      this.fetchUser({ id: thread.userId });
-      this.fetchPosts({ ids: Object.keys(thread.posts) }).then(posts => {
-        posts.forEach(post => {
-          this.fetchUser({ id: post.userId });
-        });
+    this.fetchThread({ id: this.threadId })
+      .then(thread => {
+        this.fetchUser({ id: thread.userId });
+        return this.fetchPosts({ ids: Object.keys(thread.posts) });
+      })
+      .then(posts => {
+        return Promise.all(
+          posts.map(post => {
+            this.fetchUser({ id: post.userId });
+          })
+        );
+      })
+      .then(() => {
+        this.asyncDataStatus_fetched();
       });
-    });
   }
 };
 </script>
